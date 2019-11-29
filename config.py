@@ -17,7 +17,7 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
-    pass
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 class TestingConfig(Config):
