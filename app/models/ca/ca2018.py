@@ -1,8 +1,8 @@
 from app.factory import db
 import os
 
-class CA2019(db.Model):
-    __tablename__ = "ca2019"
+class CA2018(db.Model):
+    __tablename__ = "ca2018""
     id = db.Column(db.Integer, primary_key=True)
     tariff = db.Column(db.String(10), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=True)

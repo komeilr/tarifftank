@@ -1,8 +1,8 @@
 from app.factory import db
 import os
 
-class CA2019(db.Model):
-    __tablename__ = "ca2019"
+class CA2017(db.Model):
+    __tablename__ = "ca2017"
     id = db.Column(db.Integer, primary_key=True)
     tariff = db.Column(db.String(10), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=True)
@@ -31,7 +31,6 @@ class CA2019(db.Model):
     krt = db.Column(db.String(), nullable=True)
     ceut = db.Column(db.String(), nullable=True)
     uat = db.Column(db.String(), nullable=True)
-    cptpt = db.Column(db.String(), nullable=True)
 
 def __repr__(self):
     return f"<{self.__tablename__} {self.tariff}>"
