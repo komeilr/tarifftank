@@ -33,5 +33,5 @@ class CA2018(db.Model):
     uat = db.Column(db.String(), nullable=True)
     cptpt = db.Column(db.String(), nullable=True)
 
-def __repr__(self):
-    return f"<{self.__tablename__} {self.tariff}>"
+    def __repr__(self):
+        return f"<{self.__tablename__} {self.tariff}>"
