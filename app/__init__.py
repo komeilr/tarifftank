@@ -2,7 +2,7 @@ from app.factory import db
 import os
 
 class CABASE(db.Model):
-    __tablename__ = "ca2017"
+    __tablename__ = "cabase"
     id = db.Column(db.Integer, primary_key=True)
     tariff = db.Column(db.String(10), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=True)
@@ -37,3 +37,21 @@ class CABASE(db.Model):
 
     def __str__(self):
         return f"<{self.__tablename__} {self.tariff}>"
+
+
+
+class CA2017(CABASE):
+    __tablename__="ca2017"
+  
+    def __repr__(self):
+        return f"<{self.__tablename__} {self.tariff}>"
+
+class CA2018(CABASE):
+    __tablename__ = "ca2018"
+
+    cptpt = db.Column(db.String(255), nullable=True)
+
+
+class CA2019(CABASE):   
+
+    __tablename__ = "ca2019"

@@ -36,4 +36,7 @@ def create_app():
         from app.main.routes import main_bp
         app.register_blueprint(main_bp)
 
+        from app.ca.routes import ca_bp
+        app.register_blueprint(ca_bp)
+
     return app

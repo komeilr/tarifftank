@@ -4,5 +4,5 @@ main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates
 
 @main_bp.route('/')
 def index():
-    return render_template('index.html', title="Index")
+    return render_template('main/index.html', title="Index")
     
