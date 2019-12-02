@@ -2,12 +2,17 @@ import os
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import config
+
+from utils import check_env_vars
 
 # instantiate db
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app():
+    check_env_vars()
     app = Flask(__name__)
 
     # Set app configuration
@@ -20,6 +25,7 @@ def create_app():
 
     # initialize DB
     db.init_app(app)
+    migrate.init_app(app, db)
  
     with app.app_context():
         #TODO: create db/tables and populate if not exists

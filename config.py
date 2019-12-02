@@ -6,6 +6,7 @@ class Config:
     TESTING = False
     DEBUG = False
     SECRET_KEY = 'change-this-shitty-key'
+    BASEDIR = basedir
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
