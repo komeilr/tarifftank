@@ -33,9 +33,11 @@ def create_app():
         #TODO: update if necessary
 
         # Add Routes
+        # Main
         from app.main.routes import main_bp
         app.register_blueprint(main_bp)
 
+        # Canada
         from app.ca.routes import ca_bp
         app.register_blueprint(ca_bp)
 
