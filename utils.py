@@ -1,5 +1,6 @@
 import os
 
+
 def check_env_vars():
     """checks to see if environment variables have been set
     Raises error"""

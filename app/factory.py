@@ -24,8 +24,11 @@ def create_app():
         app.config.from_object(config.DevelopmentConfig)
 
     # initialize DB
-    db.init_app(app)
-    migrate.init_app(app, db)
+    if db:
+        db.init_app(app)
+    
+    if migrate:
+        migrate.init_app(app, db)
  
     with app.app_context():
         #TODO: create db/tables and populate if not exists
