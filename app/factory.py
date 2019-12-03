@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import config
 
-from utils import check_env_vars
+from checkers import check_env_vars
 
 # instantiate db
 db = SQLAlchemy()
