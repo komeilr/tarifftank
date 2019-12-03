@@ -5,13 +5,19 @@ from converters import json_to_obj, json_to_str
 
 app = create_app()
 
-def execute(query):
+def execute(query, fetch='all'):
+    """ executes query with app context"""
     res = None
     with app.app_context():
         res = db.session.execute(query)
+    if fetch == 'one':
+        return res.fetchone()
     return res.fetchall()
 
+
+
 def pop_table(table):
+    """ Populates Tables given table class """
     with app.app_context():
         data = json_to_obj(json_to_str(table.__tablename__))
         for row in data:
@@ -21,4 +27,4 @@ def pop_table(table):
         db.session.commit()
 
 
-
+# pop_table(CA2017)
