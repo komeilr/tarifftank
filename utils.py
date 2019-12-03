@@ -1,5 +1,7 @@
 from app.factory import create_app, db
-import json
+from app.ca.models import CA2017, CA2018, CA2019
+from converters import json_to_obj, json_to_str
+
 
 app = create_app()
 
@@ -9,14 +11,14 @@ def execute(query):
         res = db.session.execute(query)
     return res.fetchall()
 
-def populate_table(tablename):
-    data_path = "app/data/ca"
-    json_data = None
-    with open(f"{data_path}/{tablename}.json", 'r') as f:
-        json_str = f.read()
-        json_data = json.loads(json_str)[0]
-    return json_data
+def pop_table(table):
+    with app.app_context():
+        data = json_to_obj(json_to_str(table.__tablename__))
+        for row in data:
+            entry = table(**row)
+            db.session.add(entry)
+
+        db.session.commit()
 
 
 
-populate_table('ca2019')
