@@ -94,9 +94,9 @@ class HeadingCA:
         for k, v in d.items():            
             if isinstance(v, dict):
                 if len(k) % 2 != 0:
-                    print("\t" * v['level'], v['description'])
+                    print("\t" * v['level'], "-" * (len(k) - 5), v['description'])
                 else:
-                    print("\t" * v['level'], self._format_hs(k), "-" * v['level'], v['description'])
+                    print("\t" * v['level'], self._format_hs(k), "-" * (len(k) - 5), v['description'])
                 self.book_view(v)
 
 
@@ -105,4 +105,4 @@ class HeadingCA:
 
         for k, v in d.items():
             if isinstance(v, dict):
-                
+                pass
