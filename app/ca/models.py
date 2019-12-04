@@ -1,16 +1,7 @@
 from app.factory import db
 
 
-class Base_Mixin():
-
-    def __repr__(self):
-        return f"<{self.__tablename__} {self.tariff}>"
-
-    def __str__(self):
-        return f"<{self.__tablename__} {self.tariff}>"
-  
-
-class CA2018(db.Model, Base_Mixin):
+class CA2018(db.Model):
     __tablename__ = "ca2018"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -43,8 +34,14 @@ class CA2018(db.Model, Base_Mixin):
     uat = db.Column(db.String(255), nullable=True)
     cptpt = db.Column(db.String(255), nullable=True)
 
+    def __repr__(self):
+        return f"<{self.__tablename__} {self.tariff}>"
 
-class CA2019(db.Model, Base_Mixin):   
+    def __str__(self):
+        return f"<{self.__tablename__} {self.tariff}>"
+
+
+class CA2019(db.Model):   
 
     __tablename__ = "ca2019"
 
@@ -77,3 +74,10 @@ class CA2019(db.Model, Base_Mixin):
     ceut = db.Column(db.String(255), nullable=True)
     uat = db.Column(db.String(255), nullable=True)
     cptpt = db.Column(db.String(255), nullable=True)
+
+
+    def __repr__(self):
+        return f"<{self.__tablename__} {self.tariff}>"
+
+    def __str__(self):
+        return f"<{self.__tablename__} {self.tariff}>"
