@@ -1,6 +1,7 @@
 from app.factory import create_app, db
-from app.ca.models import CA2017, CA2018, CA2019
-from converters import json_to_obj, json_to_str
+from app.ca.models import Section
+#from converters import json_to_obj, json_to_str
+import csv
 
 
 app = create_app()
@@ -26,5 +27,22 @@ def pop_table(table):
 
         db.session.commit()
 
+def populate_section_notes():
 
-# pop_table(CA2017)
+    with app.app_context():
+        with open(f'app/data/ca/section-notes-2019.csv', 'r') as f:
+            reader = csv.reader(f, delimiter=',', quotechar='"')
+
+            for id, number, title, notes, sub, sup, stat in reader:
+                if number == 'Number':
+                    continue
+                entry = Section(id=id, number=number, title=title, notes=notes, 
+                                subheading_notes=sub, supplementary_notes=sup,
+                                statistical_notes=stat)
+                db.session.add(entry)
+
+            db.session.commit()
+
+
+
+pop_table_csv('section-notes-2019')
