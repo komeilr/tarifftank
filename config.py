@@ -22,7 +22,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     SECRET_KEY = os.environ.get('SECRET_KEY')
-
+    
 
 
 class TestingConfig(Config):
