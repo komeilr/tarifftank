@@ -12,7 +12,9 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app():
-    check_env_vars()
+
+    check_env_vars(['DATABASE_URI', 'SECRET_KEY'])
+
     app = Flask(__name__)
 
     # Set app configuration

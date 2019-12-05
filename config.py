@@ -22,7 +22,8 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    
+    SQLALCHEMY_POOL_RECYCLE = 299
+    SQLALCHEMY_POOL_TIMEOUT = 20
 
 
 class TestingConfig(Config):
