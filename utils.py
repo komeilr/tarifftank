@@ -1,6 +1,6 @@
 from app.factory import create_app, db
 from app.ca.models import Section, Chapter
-#from converters import json_to_obj, json_to_str
+from converters import json_to_obj, json_to_str
 import csv
 
 
@@ -16,7 +16,6 @@ def execute(query, fetch='all'):
     return res.fetchall()
 
 
-
 def pop_table(table):
     """ Populates Tables given table class """
     with app.app_context():
@@ -26,6 +25,7 @@ def pop_table(table):
             db.session.add(entry)
 
         db.session.commit()
+
 
 def populate_section_notes():
 
@@ -42,6 +42,7 @@ def populate_section_notes():
                 db.session.add(entry)
 
             db.session.commit()
+            
 
 def populate_chapter_notes():
 
