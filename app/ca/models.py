@@ -105,6 +105,7 @@ class Chapter(db.Model):
     __tablename__ = "ch_notes_2019"
 
     id = db.Column(db.Integer, primary_key=True)
+    chapter = db.Column(db.String(255), nullable=False)
     title = db.Column(db.Text, nullable=True)
     notes = db.Column(db.Text, nullable=True)
     subheading_notes = db.Column(db.Text, nullable=True)

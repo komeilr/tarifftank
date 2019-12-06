@@ -1,5 +1,5 @@
 from app.factory import create_app, db
-from app.ca.models import Section
+from app.ca.models import Section, Chapter
 #from converters import json_to_obj, json_to_str
 import csv
 
@@ -43,6 +43,22 @@ def populate_section_notes():
 
             db.session.commit()
 
+def populate_chapter_notes():
+
+    with app.app_context():
+        with open(f'app/data/ca/chapter-notes-2019.csv', 'r') as f:
+            reader = csv.reader(f, delimiter=',', quotechar='"')
+
+            for chapter, title, notes, sub, sup, stat, section in reader:
+                if title == 'TITLE':
+                    continue
+                entry = Chapter(chapter=chapter, title=title, notes=notes, 
+                                subheading_notes=sub, supplementary_notes=sup,
+                                statistical_notes=stat, section_id=section)
+                db.session.add(entry)
+
+            db.session.commit()
 
 
-pop_table_csv('section-notes-2019')
+
+populate_chapter_notes()
