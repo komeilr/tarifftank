@@ -9,6 +9,13 @@ class HeadingCA:
         self.year = self._validate_input(year)
         self.tariffs = self._query_tariffs()
         self.description = self.tariffs[0].description
+        self.chapter_notes = self._query_chapter_notes()
+        self.section_notes = self.chapter_notes.section
+
+
+    def _query_chapter_notes(self):
+        query = app.ca.models.Chapter.query.filter_by(chapter=self.heading[:2]).first()
+        return query
 
 
     def _validate_input(self, _input):
@@ -21,7 +28,7 @@ class HeadingCA:
         else:
             return _input
 
-    
+
     def _format_hs(self, hscode: str) -> str:
         """input: 10 digit string representing HS code\nreturns string of length 13 with 3 dots added to HS code for better readability"""
         out = hscode[:4]
@@ -62,6 +69,7 @@ class HeadingCA:
             'uom': tariffobj.uom,
             'level': level
         }
+
 
     def _key_chain(self, tariff):
         """generates a list of strings signifying heading, subheading and tariff levels of a tariff
@@ -117,7 +125,7 @@ class HeadingCA:
     def book_view_web(self):
         out = []
         for t in self.tariffs:
-            d = {'tariff':'', 'ss':'', 'description':'', 'uom':'', 'mfn':'', 'ftas':''}
+            d = {'tariff':'', 'ss':'', 'description':'', 'uom':'', 'mfn':'', 'free':[]}
             if t.tariff:
                 if len(t.tariff) < 10:
                     d['tariff'] = t.tariff
@@ -132,4 +140,16 @@ class HeadingCA:
 
             if t.mfn:
                 d['mfn'] = t.mfn
+
+            for fta in ['gt', 'aut', 'nzt', 'ccct', 'ldct', 'gpt', 'ust', 'mt', 'must', 'ciat', 'ct', 
+    'crt', 'it', 'nt', 'slt', 'pt', 'colt', 'jt', 'pat', 'hnt', 'krt', 'ceut', 'uat', 'cptpt']:
+                if hasattr(t, fta) and t.__getattribute__(fta):
+                    if t.__getattribute__(fta).lower() == 'free':
+                        d['free'].append(fta)
+                    else:
+                        d[fta] = t.__getattribute__(fta)
+            out.append(d)
+
+        return out
+                    
 
