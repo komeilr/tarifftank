@@ -1,5 +1,5 @@
 from app.factory import create_app, db
-from app.ca.models import Section, Chapter
+from app.ca.models import CA2018, CA2019, Section, Chapter
 from converters import json_to_obj, json_to_str
 import csv
 
@@ -28,6 +28,7 @@ def pop_table(table):
 
 
 def populate_section_notes():
+    """Populates section_notes_2019 table in db"""
 
     with app.app_context():
         with open(f'app/data/ca/section-notes-2019.csv', 'r') as f:
@@ -45,6 +46,7 @@ def populate_section_notes():
             
 
 def populate_chapter_notes():
+    """Populates ch_notes_2019 table in db"""
 
     with app.app_context():
         with open(f'app/data/ca/chapter-notes-2019.csv', 'r') as f:
@@ -61,5 +63,31 @@ def populate_chapter_notes():
             db.session.commit()
 
 
+def timeit(f, *args, **kwargs):
+    import time
+    def wraps(*args, **kwargs):
+        start = time.perf_counter()
+        res = f(*args, **kwargs)
+        end = time.perf_counter()
 
-populate_chapter_notes()
+        print(f"process time: {end - start:.2f}")
+        return res
+
+    return wraps
+
+
+@timeit
+def search(word):
+    res = CA2019.query.filter(CA2019.description.like(f"%{word}%")).all()
+    return res
+
+
+def avg_time(f, *args, **kwargs):
+    sum = 0
+    for i in range(100):
+        f(*args, **kwargs)
+
+
+
+if __name__=='__main__':
+    pass

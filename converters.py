@@ -1,4 +1,5 @@
 import json
+import csv
 
 
 def json_to_str(filename):
@@ -18,3 +19,22 @@ def json_to_obj(json_str):
         
     except TypeError as e:
         print(e)
+
+
+def to_csv(data, filename, path='.'):
+    with open(f"{path}/{filename}.csv", 'w') as f:
+
+        writer = csv.writer(f, delimiter=',', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
+
+        for row in data:
+            if isinstance(row, list):
+                writer.writerow(row)
+            elif isinstance(row, dict):
+                # write headers once
+                if data.index(row) == 0:
+                    writer.writerow(row.keys())
+                writer.writerow(row.values())
+        
+        return True
+
+

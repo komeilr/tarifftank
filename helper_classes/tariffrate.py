@@ -1,6 +1,11 @@
 import app.ca.models
 from sqlalchemy import and_
 
+FTAS =  [
+    'mfn', 'gt', 'aut', 'nzt', 'ccct', 'ldct', 'gpt', 'ust', 'mt', 'must', 'ciat', 'ct', 
+    'crt', 'it', 'nt', 'slt', 'pt', 'colt', 'jt', 'pat', 'hnt', 'krt', 'ceut', 'uat', 'cptpt'
+]
+
 class TariffRateCA:
     """ class used to obtain tariff rates and full stack description of 10-digit HS code"""
 
@@ -11,12 +16,9 @@ class TariffRateCA:
         self.uom = self.tobjs[-1].uom
         self.descriptions = {}
         self.rates = {}
-        self.ftas =  [
-            'mfn', 'gt', 'aut', 'nzt', 'ccct', 'ldct', 
-            'gpt', 'ust', 'mt', 'must', 'ciat', 'ct', 
-            'crt', 'it', 'nt', 'slt', 'pt', 'colt', 
-            'jt', 'pat', 'hnt', 'krt', 'ceut', 'uat', 'cptpt'
-            ]
+        self.pgas = []
+        
+        # processes query and populates attributes
         self._process()
 
 
@@ -52,7 +54,7 @@ class TariffRateCA:
         for i in range(4, 11):
             q = queryClass.query.filter(
                 and_(
-                    queryClass.tariff.like(self.tariff[:i]),    # tariff = self.tariff
+                    queryClass.tariff.like(self.tariff[:i]),    # tariff = self.tariff from 4 digits to all 10
                     queryClass.description.isnot(None)          # description is not null
                     )).first()
             if q:
@@ -68,7 +70,7 @@ class TariffRateCA:
                 self.descriptions[tariff.tariff] = tariff.description
 
             if tariff.mfn:
-                for fta in self.ftas:
+                for fta in FTAS:
                     if hasattr(tariff, fta) and tariff.__getattribute__(fta):
                         self.rates[fta] = tariff.__getattribute__(fta)
 

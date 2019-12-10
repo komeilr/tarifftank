@@ -8,6 +8,7 @@ class HeadingCA:
         self.heading = self._validate_input(heading)
         self.year = self._validate_input(year)
         self.tariffs = self._query_tariffs()
+        self.description = self.tariffs[0].description
 
 
     def _validate_input(self, _input):
@@ -25,8 +26,18 @@ class HeadingCA:
         """input: 10 digit string representing HS code\nreturns string of length 13 with 3 dots added to HS code for better readability"""
         out = hscode[:4]
 
-        return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:8]}.{hscode[8:]}"
+        if len(hscode) == 4:
+            return f"{hscode[:2]}.{hscode[2:]}"
 
+        if len(hscode) == 6:
+            return f"{hscode[:4]}.{hscode[4:]}"
+
+        if len(hscode) == 8:
+            return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:]}"
+
+        if len(hscode) == 10:
+            return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:8]}.{hscode[8:]}"
+       
     
     def _query_tariffs(self):
         """query's db for all tariff classifications of self.heading"""
@@ -35,6 +46,8 @@ class HeadingCA:
         qryCLS = vars(app.ca.models)[f"CA{self.year}"]
 
         results = qryCLS.query.filter(qryCLS.tariff.like(f'{self.heading}%')).all()
+        if not results:
+            raise ValueError(f"Heading {self.heading} doesn't exit")
 
         return results
 
@@ -89,20 +102,34 @@ class HeadingCA:
         return tariff_dict
 
 
-    def book_view(self, _dict=None):
+    def book_view_terminal(self, _dict=None):
+        """ prints to terminal book view format of heading recursively"""
         d = _dict or self.gen_tariff_dict()
         for k, v in d.items():            
             if isinstance(v, dict):
                 if len(k) % 2 != 0:
-                    print("\t" * v['level'], "-" * (len(k) - 5), v['description'])
+                    print("\t" * v['level'] + "-" * (len(k) - 5) + f" {v['description']}")
                 else:
                     print("\t" * v['level'], self._format_hs(k), "-" * (len(k) - 5), v['description'])
-                self.book_view(v)
+                self.book_view_terinal(v)
 
 
-    def pdf_view(self, _dict=None):
-        d = _dict or self.gen_tariff_dict()
+    def book_view_web(self):
+        out = []
+        for t in self.tariffs:
+            d = {'tariff':'', 'ss':'', 'description':'', 'uom':'', 'mfn':'', 'ftas':''}
+            if t.tariff:
+                if len(t.tariff) < 10:
+                    d['tariff'] = t.tariff
+                else:
+                    d['ss'] = t.tariff[-2:]
+            
+            if t.description:
+                d['description'] = t.description
+            
+            if t.uom:
+                d['uom'] = t.uom
 
-        for k, v in d.items():
-            if isinstance(v, dict):
-                pass
+            if t.mfn:
+                d['mfn'] = t.mfn
+
