@@ -1,19 +1,44 @@
 {% extends "layout.html" %} {% block main %}
-<main class="container">
-    <h1>Heading</h1>
-    <ul class="accordion" data-accordion data-multi-expand>
-        <li class="accordion-item is-active" data-accordion-item>
-            <!-- Accordion tab title -->
-            <a href="#" class="accordion-title">Accordion 1</a>
-        
-            <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
-            <div class="accordion-content" data-tab-content>
-                <p>Panel 1. Lorem ipsum dolor</p>
-                <a href="#">Nowhere to Go</a>
-            </div>
-        </li>
-        <!-- ... -->
-    </ul>
+<main>
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-10">
+            <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
+                <li>
+                    <a href="#">3926</a>
+                    <ul class="menu vertical nested">
+                        <li>
+                            <a href="#">3926.90</a>
+                            <ul class="menu vertical nested">
+                                <li>
+                                    <div class="grid-x grid-padding-x align-top">
+                                        <div class="cell small-2">
+                                            <a class="tariff-link" href="#">3926.90.99.90</a>
+                                        </div>
+                                        <div class="cell small-8">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit nostrum sint quod veritatis asperiores sit culpa blanditiis architecto autem, dolorum labore vitae eius itaque iure sapiente odio cum totam?</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="#">Item 1Aii</a></li>
+                                <li><a href="#">Item 1Aiii</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Item 1B</a></li>
+                        <li><a href="#">Item 1C</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Item 2</a>
+                        <ul class="menu vertical nested">
+                        <li><a href="#">Item 2A</a></li>
+                        <li><a href="#">Item 2B</a></li>
+                        </ul>
+                </li>
+                <li><a href="#">Item 3</a></li>
+            </ul>   
+        </div>
+    </div>
+    
 </main>
 
 {% endblock %}

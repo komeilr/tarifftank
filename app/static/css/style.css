@@ -1,0 +1,32 @@
+.top-bar, .top-bar ul {
+    background-color: white;
+}
+
+.accordion-title {
+    font-size: 1rem;
+    border: none;
+}
+
+.accordion-content {
+    border: none;
+}
+
+.submenu-toggle {
+    
+    left: -20px;
+}
+
+.accordion-menu a {
+    color: black;
+    cursor: auto;
+}
+
+.accordion-menu a.tariff-link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #1779ba;
+}
+
+
+
+
