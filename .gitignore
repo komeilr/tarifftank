@@ -3,3 +3,5 @@ __pycache__/
 .env
 migrations*/
 app/data/
+node_modules/
+package-lock.json

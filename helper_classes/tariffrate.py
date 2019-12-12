@@ -1,6 +1,7 @@
 import app.ca.models
 from sqlalchemy import and_
 
+
 FTAS =  [
     'mfn', 'gt', 'aut', 'nzt', 'ccct', 'ldct', 'gpt', 'ust', 'mt', 'must', 'ciat', 'ct', 
     'crt', 'it', 'nt', 'slt', 'pt', 'colt', 'jt', 'pat', 'hnt', 'krt', 'ceut', 'uat', 'cptpt'
@@ -17,9 +18,16 @@ class TariffRateCA:
         self.descriptions = {}
         self.rates = {}
         self.pgas = []
+        self.chapter_notes = self._query_chapter_notes()
+        self.section_notes = self.chapter_notes.section
         
         # processes query and populates attributes
         self._process()
+
+    def _query_chapter_notes(self):
+
+        query = app.ca.models.Chapter.query.filter_by(chapter=self.tariff[:2]).first()
+        return query
 
 
     def _validate_year(self, year):
