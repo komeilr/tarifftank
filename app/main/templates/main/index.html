@@ -1,10 +1,19 @@
 {% extends "layout.html" %} {% block main %}
-<h1>Heading 1</h1>
-<p>This is a paragraph</p>
-<div>
-  
-    <pre style="display: inline-block;">04.03</pre> 
-    <pre style="display: inline;">Buttermilk, curdles milk and cream, yogourt, kephir and other fermented or acidified milk and cream, whether or not concentrated or containing added sugar or other sweetening matter or flavoured or contianing added fruit, nuts or cocoa</pre>
-</div>
+<main class="container">
+    <h1>Heading</h1>
+    <ul class="accordion" data-accordion data-multi-expand>
+        <li class="accordion-item is-active" data-accordion-item>
+            <!-- Accordion tab title -->
+            <a href="#" class="accordion-title">Accordion 1</a>
+        
+            <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+            <div class="accordion-content" data-tab-content>
+                <p>Panel 1. Lorem ipsum dolor</p>
+                <a href="#">Nowhere to Go</a>
+            </div>
+        </li>
+        <!-- ... -->
+    </ul>
+</main>
 
 {% endblock %}

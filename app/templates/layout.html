@@ -4,14 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- SpectreCSS CDN -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"> -->
+
+    <!-- Foundation -->
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/foundation.min.css')}}">
+
+
+
     <title>{{title}}</title>
 </head>
 <body>
-    {% block header %}{% endblock %}
+    {% include "includes/_navbar.html" ignore missing %}
     
     {% block main %}{% endblock %}
     
     {% block footer %}{% endblock %}
+    <!-- Compressed JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js" integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA==" crossorigin="anonymous"></script>   
+    <script>
+        $(document).foundation();
+    </script>
     
 </body>
 </html>
