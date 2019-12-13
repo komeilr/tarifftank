@@ -21,11 +21,13 @@
     cursor: auto;
 }
 
-.accordion-menu a.tariff-link {
+.accordion-menu a div div.tariff-link {
     cursor: pointer;
     text-decoration: underline;
     color: #1779ba;
 }
+
+
 
 
 

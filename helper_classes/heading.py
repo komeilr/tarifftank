@@ -63,11 +63,15 @@ class HeadingCA:
         """ returns basic dictionary structure for Heading type
         input: 3 element list containing hscode, description and unit of measure"""
 
+
         return {
             'tariff': tariffobj.tariff,
+            'formatted_hs': self._format_hs(tariffobj.tariff),
             'description': tariffobj.description,
             'uom': tariffobj.uom,
-            'level': level
+            'level': level,
+            'is_link':len(tariffobj.tariff) == 10,
+            'is_general_description':len(tariffobj.tariff) in [5, 7, 9]
         }
 
 

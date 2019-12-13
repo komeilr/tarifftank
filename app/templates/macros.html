@@ -1,0 +1,89 @@
+{% macro tariff_link(tariff_obj) %}
+<div class="grid-x grid-padding-x align-top">
+    <div class="cell small-2">
+        <a href="#" class="tariff-link">{{tariff_obj.tariff}} TODO: HS FORMAT FILTER</a>
+    </div>
+    <div class="cell auto">
+        <p>{{tariff_obj.description}}</p>
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro tariff_desc(tariff_obj) %}
+<a href="#">{{tariff_obj.description}}</a>
+{% endmacro %}
+
+{% macro tariff_nolink(tariff_obj) %}
+
+{% if tariff_obj.is_link %}
+<a href="{{url_for('ca.tariff_lookup', year='2019', tariff=tariff_obj.tariff)}}" >
+{% else %}
+<a href="#" >
+{% endif %}
+    {% if tariff_obj.is_general_description %}
+    <h6>{{tariff_obj.description}}</h6></a>
+    {% else %}
+    <div class="grid-x grid-padding-x align-top">
+        {% if tariff_obj.tariff | length == 10 %}
+        <div class="cell small-2 tariff-link">
+        {% else %}
+        <div class="cell small-2">
+        {% endif %}        
+            {{tariff_obj.formatted_hs}}
+        </div>
+    
+
+        <div class="cell auto description">
+            <p>{{tariff_obj.description}}</p>
+        </div>
+    </div>
+</a>
+    {% endif %}
+{% endmacro %}
+
+{% macro heading_accordion(tariff_dict) %}
+<div class="grid-x grid-padding-x align-center">
+    <div class="cell small-10">
+        {% for k_0, v_0 in tariff_dict.items() %}
+        {% if v_0 is mapping %}
+        <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
+            <li>{{tariff_nolink(v_0)}}
+            {% for k_1, v_1 in v_0.items() %}
+            {% if v_1 is mapping %}
+            <ul class="menu vertical nested">
+                <li>{{tariff_nolink(v_1)}}
+                {% for k_2, v_2 in v_1.items() %}
+                {% if v_2 is mapping %}                
+                <ul class="menu vertical nested">
+                    <li>{{tariff_nolink(v_2)}}
+                    {% for k_3, v_3 in v_2.items() %}
+                    {% if v_3 is mapping %}
+                    <ul class="menu vertical nested">
+                        <li>{{tariff_nolink(v_3)}}
+                        {% for k_4, v_4 in v_3.items() %}
+                        {% if v_4 is mapping %}
+                            <li>{{tariff_nolink(v_4)}}</li>
+                        {% endif %}
+                        {% endfor %}
+                        </li>                  
+                    </ul>                    
+                    {% endif %}
+                    {% endfor %}
+                    </li>                
+                </ul>                
+                {% endif %}
+                {% endfor %}            
+                </li>
+            </ul>                        
+            {% endif %}
+            {% endfor %}        
+            </li>
+        </ul>        
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endmacro %}

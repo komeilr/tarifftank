@@ -25,6 +25,9 @@ def create_app():
     else:
         app.config.from_object(config.DevelopmentConfig)
 
+    app.jinja_env.trim_blocks = True
+    app.jinja_env.lstrip_blocks = True
+
     # initialize DB
     if db:
         db.init_app(app)
