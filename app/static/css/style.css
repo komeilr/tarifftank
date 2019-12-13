@@ -1,3 +1,4 @@
+
 .top-bar, .top-bar ul {
     background-color: white;
 }
@@ -13,7 +14,7 @@
 
 .submenu-toggle {
     
-    left: -20px;
+    left: -25px;
 }
 
 .accordion-menu a {
