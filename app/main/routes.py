@@ -9,7 +9,7 @@ main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates
 @main_bp.route('/')
 def index():
 
-    h = HeadingCA('7323')
+    h = HeadingCA('8467')
     heading = h.gen_tariff_dict()
 
     #return json.dumps(heading.gen_tariff_dict())

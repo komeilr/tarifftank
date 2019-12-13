@@ -68,6 +68,8 @@ class HeadingCA:
             'tariff': tariffobj.tariff,
             'formatted_hs': self._format_hs(tariffobj.tariff),
             'description': tariffobj.description,
+            'is_heading':level < 1,
+            'year':self.year,
             'uom': tariffobj.uom,
             'level': level,
             'is_link':len(tariffobj.tariff) == 10,

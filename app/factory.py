@@ -25,8 +25,14 @@ def create_app():
     else:
         app.config.from_object(config.DevelopmentConfig)
 
+    # Jinja template configs
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
+    app.jinja_env.keep_trailing_newline = True
+
+    # add filters
+    from filters import embolden
+    app.jinja_env.filters['embolden'] = embolden
 
     # initialize DB
     if db:

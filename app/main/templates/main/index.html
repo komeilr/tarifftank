@@ -3,7 +3,7 @@
 {% extends "layout.html" %} {% block main %}
 {% from "macros.html" import heading_accordion %}
 <main>
-    {{heading_accordion(heading)}}
+    {{heading_accordion(heading) | embolden("")}}
     
 </main>
 
