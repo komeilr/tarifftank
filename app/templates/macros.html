@@ -82,3 +82,24 @@
 </div>
 
 {% endmacro %}
+
+{% macro notes(note_obj) %}
+
+{% if note_obj.notes %}
+<h3>Notes</h3>
+<p>{{note_obj.notes }}</p>
+{% endif %}
+{% if note_obj.subheading_notes %}
+<h3>Sub-heading Notes</h3>
+<p>{{note_obj.subheading_notes}}</p>
+{% endif %}
+{% if note_obj.supplemental_notes %}
+<h3>Supplemental Notes</h3>
+<p>{{note_obj.supplemental_notes}}</p>
+{% endif %}
+{% if note_obj.statistical_notes %}
+<h3>Statistical Notes</h3>
+<p>{{note_obj.statistical_notes}}</p>
+{% endif %}
+
+{% endmacro %}
