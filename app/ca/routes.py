@@ -13,13 +13,15 @@ def heading_lookup(year, heading):
     heading_dict = h.gen_tariff_dict()
 
 
-    return render_template('ca/heading-lookup.html', title="Canada", year=year, h=h, heading_dict=heading_dict)
+    return render_template('ca/heading-lookup.html', title="Canada", year=year, h=h)
 
 @ca_bp.route('/<year>/tariff/<tariff>')
 def tariff_lookup(year, tariff):
     #TODO: lookup tariff
     #TODO: include s/ch notes and pga
-    pass
+    t = TariffRateCA(tariff=tariff, year=year)
+
+    return render_template('ca/tariff-lookup.html', title="Tariff Rates", t=t)
 
 
 @ca_bp.route('/<keyword>')

@@ -34,3 +34,4 @@ def format_hs(hscode: str) -> str:
 
     if len(hscode) == 10:
         return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:8]}.{hscode[8:]}"
+    return ""

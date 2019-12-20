@@ -3,7 +3,9 @@
 
 {% block main %}
 
-<h1>Heading <small>{{h.heading | format_hs}}</small></h1>
+<div class="callout">
+    <h1>Tariff Heading <small>{{h.heading | format_hs}}</small></h1>
+</div>
 
 <ul class="tabs" data-tabs id="example-tabs">
     <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">{{h.heading}}</a></li>
@@ -28,10 +30,7 @@
         
         {{notes(h.chapter_notes)}}
      
-        </div>
+    </div>
 </div>
-
-<!-- <p>Tryina look up {{h.heading}} in {{h.year}}</p> -->
-
 
 {% endblock %}
