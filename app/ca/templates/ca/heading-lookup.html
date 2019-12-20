@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% from "macros.html" import heading_accordion %}
+
+{% block main %}
+
+<h1>Heading <small>{{h.heading | format_hs}}</small></h1>
+
+<ul class="tabs" data-tabs id="example-tabs">
+    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">{{h.heading}}</a></li>
+    <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Section Notes</a></li>
+    <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Chapter Notes</a></li>
+</ul>
+
+
+<div class="tabs-content" data-tabs-content="example-tabs">
+    <div class="tabs-panel is-active" id="panel1">
+        <p>{{heading_accordion(heading_dict)}}</p>
+    </div>
+    <div class="tabs-panel" id="panel2">
+        <h3>Section {{h.section_notes.number}} - {{h.section_notes.title}}</h3>
+      
+        {% if h.section_notes.notes %}
+        <h3>Notes</h3>
+        <p>{{h.section_notes.notes }}</p>
+        {% endif %}
+        {% if h.section_notes.subheading_notes %}
+        <h3>Sub-heading Notes</h3>
+        <p>{{h.section_notes.subheading_notes}}</p>
+        {% endif %}
+        {% if h.section_notes.supplemental_notes %}
+        <h3>Supplemental Notes</h3>
+        <p>{{h.section_notes.supplemental_notes}}</p>
+        {% endif %}
+        {% if h.section_notes.statistical_notes %}
+        <h3>Statistical Notes</h3>
+        <p>{{h.section_notes.statistical_notes}}</p>
+        {% endif %}
+
+    </div>
+    <div class="tabs-panel" id="panel3">
+            {% if h.chapter_notes %}
+            <h3>Chapter {{h.chapter_notes.chapter}} - {{h.chapter_notes.title}}</h3>
+                {% if h.chapter_notes.notes %}
+                <h3>Notes</h3>
+                <p>{{h.chapter_notes.notes }}</p>
+                {% endif %}
+                {% if h.chapter_notes.subheading_notes %}
+                <h3>Sub-heading Notes</h3>
+                <p>{{h.chapter_notes.subheading_notes}}</p>
+                {% endif %}
+                {% if h.chapter_notes.supplemental_notes %}
+                <h3>Supplemental Notes</h3>
+                <p>{{h.chapter_notes.supplemental_notes}}</p>
+                {% endif %}
+                {% if h.chapter_notes.statistical_notes %}
+                <h3>Statistical Notes</h3>
+                <p>{{h.chapter_notes.statistical_notes}}</p>
+                {% endif %}
+            {% else %}
+            <h3>No Chapter Notes</h3>
+            {% endif %}
+        </div>
+</div>
+
+<!-- <p>Tryina look up {{h.heading}} in {{h.year}}</p> -->
+
+
+{% endblock %}

@@ -4089,7 +4089,7 @@ a.thumbnail {
   margin-right: 40px; }
 
 .submenu-toggle {
-  position: absolute;
+  position: absolute;  
   top: 0;
   right: 0;
   width: 40px;
@@ -4098,9 +4098,12 @@ a.thumbnail {
   .submenu-toggle::after {
     display: block;
     width: 0;
-    height: 0;
-    border: inset 6px;
-    content: '';
+    height: 50%;
+    /* border: inset 7px; */    
+    content: '+';
+    -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+            transform: scale(1.5);
     border-bottom-width: 0;
     border-top-style: solid;
     border-color: #1779ba transparent transparent;
@@ -4109,9 +4112,10 @@ a.thumbnail {
     margin: auto; }
 
 .submenu-toggle[aria-expanded='true']::after {
-  -webkit-transform: scaleY(-1);
-      -ms-transform: scaleY(-1);
-          transform: scaleY(-1);
+  content:'-';
+  -webkit-transform: scaleX(2);
+      -ms-transform: scaleX(2);
+          transform: scaleX(2);
   -webkit-transform-origin: 50% 50%;
       -ms-transform-origin: 50% 50%;
           transform-origin: 50% 50%; }

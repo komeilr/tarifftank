@@ -14,7 +14,7 @@
 
 .submenu-toggle {
     
-    left: -25px;
+    left: -30px;
 }
 
 .accordion-menu a {
@@ -26,6 +26,18 @@
     cursor: pointer;
     text-decoration: underline;
     color: #1779ba;
+}
+
+.tabs-content {
+    min-height: 500px;
+}
+
+.tabs-title a {
+    font-size: 1rem;
+}
+
+pre {
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial,sans-serif;
 }
 
 

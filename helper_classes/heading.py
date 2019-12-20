@@ -28,7 +28,6 @@ class HeadingCA:
         else:
             return _input
 
-
     def _format_hs(self, hscode: str) -> str:
         """input: 10 digit string representing HS code\nreturns string of length 13 with 3 dots added to HS code for better readability"""
         out = hscode[:4]

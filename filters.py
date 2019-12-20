@@ -17,3 +17,20 @@ def embolden(string, keyword):
         string = string.replace(word, Markup(f"<strong>{word}</strong>"))
     
     return string
+
+
+def format_hs(hscode: str) -> str:
+    """input: 10 digit string representing HS code\nreturns string of length 13 with 3 dots added to HS code for better readability"""
+    out = hscode[:4]
+
+    if len(hscode) == 4:
+        return f"{hscode[:2]}.{hscode[2:]}"
+
+    if len(hscode) == 6:
+        return f"{hscode[:4]}.{hscode[4:]}"
+
+    if len(hscode) == 8:
+        return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:]}"
+
+    if len(hscode) == 10:
+        return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:8]}.{hscode[8:]}"

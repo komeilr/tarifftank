@@ -3,7 +3,6 @@
 {% extends "layout.html" %} {% block main %}
 {% from "macros.html" import heading_accordion %}
 <main>
-    {% raw %}{{heading_accordion(heading) | embolden("")}}{% endraw %}
     <div class="grid-y align-center" style="height:500px;">
         <div class="cell small-6">
             <form class="search-form" action="{{url_for('main.search')}}" method="post">
