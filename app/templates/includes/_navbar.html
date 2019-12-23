@@ -7,25 +7,26 @@
     <div class="top-bar topbar-sticky-shrink" id="responsive-menu" data-responsive-toggle="responsive-menu" data-sticky data-hide-for="medium" data-sticky-options="marginTop:0;" style="width:100%;" data-top-anchor="1">
         <div class="top-bar-left">
             <ul id="dropdownMenu" class="dropdown menu" data-dropdown-menu>
-            <li><a href="{{url_for('main.index')}}">Tariff Tank</a></li>
-            <li class="has-submenu">
+            <!-- <li class="menu-text">Tariff Tank</a></li> -->
+            <li><img src="{{url_for('static', filename='img/logo.png')}}" alt=""></li>
+            <!-- <li class="has-submenu">
                 <a href="#0">One</a>
                 <ul class="submenu menu vertical" data-submenu>
-                <li><a href="#0">One</a></li>
+                <li><a href="#0">Search</a></li>
                 <li><a href="#0">Two</a></li>
                 <li><a href="#0">Three</a></li>
                 </ul>
-            </li>
-            <li><a href="#0">Two</a></li>
-            <li><a href="#0">Three</a></li>
+            </li> -->
+            <li><a href="{{url_for('main.index')}}">Search</a></li>
+            <!-- <li><a href="#0">Three</a></li> -->
             </ul>
         </div>
-        <div class="top-bar-right hide-for-small-only">
+        <!-- <div class="top-bar-right hide-for-small-only">
             <ul class="menu">
             <li><input type="search" placeholder="Search"></li>
             <li><button type="button" class="button">Search</button></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </div>
 <hr>

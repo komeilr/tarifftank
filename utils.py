@@ -86,8 +86,7 @@ def avg_time(f, *args, **kwargs):
     sum = 0
     for i in range(100):
         f(*args, **kwargs)
-
-
+ 
 
 if __name__=='__main__':
     pass

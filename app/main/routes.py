@@ -25,10 +25,17 @@ def search():
         session['year'] = request.form.get('year')
         session['region'] = request.form.get('region')
         keyword = request.form.get('keyword').replace('.', '')
+
+        if len(keyword) == 4 and keyword.isdigit():
+            page = 'heading_lookup'
+        elif len(keyword) == 10 and keyword.isdigit():
+            page = 'tariff_lookup'
+        elif keyword.isalpha():
+            page = 'text_search'
         
-        #keyword = filter(request.form.get('keyword').replace('.','').isalnum(), string.printable)
+
         if session['region'] == 'ca':
-            return redirect(url_for('ca.heading_lookup', year=session['year'], heading=keyword))
+            return redirect(url_for(f'ca.{page}', year=session['year'], tariff=keyword))
 
         
 

@@ -4,12 +4,12 @@ from helper_classes.tariffrate import TariffRateCA
 
 ca_bp = Blueprint('ca', __name__, url_prefix='/ca/', template_folder='templates')
 
-@ca_bp.route('/<year>/heading/<heading>')
-def heading_lookup(year, heading):
+@ca_bp.route('/<year>/heading/<tariff>')
+def heading_lookup(year, tariff):
     #TODO: add PGA stats
 
     # h object contains chapter and section notes
-    h = HeadingCA(heading, year)
+    h = HeadingCA(tariff, year)
     heading_dict = h.gen_tariff_dict()
 
 

@@ -11,8 +11,8 @@ class TariffRateCA:
     """ class used to obtain tariff rates and full stack description of 10-digit HS code"""
 
     def __init__(self, tariff, year='2019'):
-        self.tariff = self._validate_tariff(tariff)
-        self.year = self._validate_year(year)
+        self.year = year
+        self.tariff = self._validate_tariff(tariff)        
         self.tobjs = self._get_rate_info()
         self.uom = self.tobjs[-1].uom
         self.descriptions = {}
@@ -30,24 +30,11 @@ class TariffRateCA:
         return query
 
 
-    def _validate_year(self, year):
-        """validatees input: year"""
-
-        if not isinstance(year, str):
-            raise TypeError("input must be of type str")
-        elif len(year) != 4:
-            raise ValueError("input must be 4 chars in length")
-        else:
-            return year
-
-
     def _validate_tariff(self, tariff):
         """validates hs classification input"""
 
-        if not isinstance(tariff, str):
-            raise TypeError("input must be of type str")
-        elif len(tariff) != 10:
-            raise ValueError("input must be 10 chars in length")
+        if not vars(app.ca.models)[f"CA{self.year}"].query.filter_by(tariff=tariff).first():
+            raise ValueError("invalid tariff code")
         else:
             return tariff
 

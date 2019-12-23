@@ -5,3 +5,4 @@ migrations*/
 app/data/
 node_modules/
 package-lock.json
+app/static/img/

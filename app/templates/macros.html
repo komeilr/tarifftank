@@ -10,12 +10,12 @@
     <h6><em>{{tariff_obj.description}}</em></h6>
 </a>
     {% else %}
-    <div class="grid-x grid-padding-x align-center">
+    <div class="grid-x grid-margin-x align-center">
         
         {% if tariff_obj.tariff | length == 10 %}
-        <div class="cell large-2 tariff-link">
+        <div class="cell large-2 medium-3 tariff-link">
         {% else %}
-        <div class="cell large-1">
+        <div class="cell large-2 medium-3">
         {% endif %}
             {% if tariff_obj.is_heading %}
             <strong>{{tariff_obj.formatted_hs}}</strong>
@@ -39,8 +39,8 @@
 
 <!-- heading_accordion() -->
 {% macro heading_accordion(tariff_dict) %}
-<div class="grid-x grid-padding-x align-center">
-    <div class="cell small-10">
+<div class="grid-x grid-margin-x align-center">
+    <div class="cell small-10 medium-9 large-8">
         {% for k_0, v_0 in tariff_dict.items() %}
         {% if v_0 is mapping %}
         <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
