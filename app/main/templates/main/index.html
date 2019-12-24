@@ -3,15 +3,41 @@
 {% extends "layout.html" %} {% block main %}
 {% from "macros.html" import heading_accordion %}
 <main>
-    <div class="grid-y align-center" style="height:500px;">
-        <div class="cell small-6">
+    
+    <div class="grid-y grid-margin-y align-center" style="height:500px;">
+        <div class="cell small-1">
+            <div class="grid-x grid-padding-x align-center">
+                <div class="small-8 cell">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert callout" data-closable="slide-out-right">
+                    <p>{{message}}</p>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                </div>
+            </div>
+        </div>
+        <div class="cell small-2">
+            <div class="grid-x align-center">
+                <div class="cell small-10 small-offset-2 medium-8 medium-offset-1 large-8 large-offset-3">
+                    <h3 class="subheader">Enter 2, 4 or 10 digit tariff code or keyword</h3>
+                </div>
+            </div>
+        </div>
+        <div class="cell small-1">
             <form class="search-form" action="{{url_for('main.search')}}" method="post">
                 <div class="grid-container fluid"></div>
                     <div class="grid-x align-center">
                         <div class="small-10 medium-10 large-6 cell">
                             <input name="keyword" type="search" placeholder="Enter HS or Keyword">
                         </div>
-                        <div class=" small-3 medium-4 large-1 cell">
+                        <div class="small-3 medium-4 large-1 cell">
                             <select name="year" id="">
                                     <option value="2020" disabled>2020</option>
                                 {% for i in range(2019, 2017, -1) %}
@@ -42,7 +68,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div>        
     </div>
     
 </main>

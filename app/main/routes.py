@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from helper_classes.heading import HeadingCA
 from helper_classes.tariffrate import TariffRateCA
 import json
@@ -32,13 +32,13 @@ def search():
             page = 'tariff_lookup'
         elif keyword.isalpha():
             page = 'text_search'
+        else:
+            flash("Invalid input")
+            return redirect(url_for('main.index'))
         
 
         if session['region'] == 'ca':
             return redirect(url_for(f'ca.{page}', year=session['year'], tariff=keyword))
-
-        
-
 
     else:
         session['year'] = '2019'

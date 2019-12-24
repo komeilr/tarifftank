@@ -63,30 +63,6 @@ def populate_chapter_notes():
             db.session.commit()
 
 
-def timeit(f, *args, **kwargs):
-    import time
-    def wraps(*args, **kwargs):
-        start = time.perf_counter()
-        res = f(*args, **kwargs)
-        end = time.perf_counter()
-
-        print(f"process time: {end - start:.2f}")
-        return res
-
-    return wraps
-
-
-@timeit
-def search(word):
-    res = CA2019.query.filter(CA2019.description.like(f"%{word}%")).all()
-    return res
-
-
-def avg_time(f, *args, **kwargs):
-    sum = 0
-    for i in range(100):
-        f(*args, **kwargs)
- 
 
 if __name__=='__main__':
     pass

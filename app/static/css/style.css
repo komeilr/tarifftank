@@ -40,10 +40,6 @@ pre {
     font-family: "Helvetica Neue", Helvetica, Roboto, Arial,sans-serif;
 }
 
-.callout h1 small {
-    font-size: 50%;
-}
-
 .top-bar-left ul li.menu-text {
     font-size: 1.5rem;
 }
@@ -59,6 +55,14 @@ input.button {
 
 .top-bar-left ul li img {
     margin: 0px;
+}
+
+.top-bar {
+    border-bottom: 1px solid lightgrey;
+}
+
+.label {
+    width:100%;
 }
 
 
