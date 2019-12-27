@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+import csv
+
+from flask import Blueprint, render_template, redirect, url_for, flash
 from helper_classes.heading import HeadingCA
 from helper_classes.tariffrate import TariffRateCA
 
@@ -9,24 +11,42 @@ def heading_lookup(year, tariff):
     #TODO: add PGA stats
 
     # h object contains chapter and section notes
-    h = HeadingCA(tariff, year)
-    heading_dict = h.gen_tariff_dict()
+    if len(tariff) == 4:
+        try:
+            h = HeadingCA(tariff, year)
+            heading_dict = h.gen_tariff_dict()
+            return render_template('ca/heading-lookup.html', title="Canada", year=year, h=h)
+        except:
+            flash(f"Invalid heading {tariff}")
+    else:
+        flash(f"Invalid tariff {tariff}")
+    return redirect(url_for('main.index'))
 
-
-    return render_template('ca/heading-lookup.html', title="Canada", year=year, h=h)
 
 @ca_bp.route('/<year>/tariff/<tariff>')
 def tariff_lookup(year, tariff):
     #TODO: lookup tariff
     #TODO: include s/ch notes and pga
-    t = TariffRateCA(tariff=tariff, year=year)
+    if len(tariff) == 10:
+        try:
+            t = TariffRateCA(tariff=tariff, year=year)
 
-    return render_template('ca/tariff-lookup.html', title="Tariff Rates", t=t)
+            # PGA
+      
+
+            return render_template('ca/tariff-lookup.html', title="Tariff Rates", t=t)
+        except:
+            flash(f"invalid 10-digit HS code - {tariff}")
+    return redirect(url_for('main.index'))
 
 
-@ca_bp.route('/<keyword>')
-def search_keyword(keyword):
-    pass
+@ca_bp.route('/text-search/<year>/<tariff>')
+def text_search(year, tariff):
+    keyword = str(tariff)
+    if keyword.isalpha():
+        return f"<h1>{keyword}</h1>"
+    else:
+        return "Error"
 
 
     return render_template('ca/index.html', title="Canada", year=year, tariff=tariff)

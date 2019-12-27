@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_debugtoolbar import DebugToolbarExtension
 import config
 
 from checkers import check_env_vars
@@ -10,6 +11,7 @@ from checkers import check_env_vars
 # instantiate db
 db = SQLAlchemy()
 migrate = Migrate()
+debug_toolbar = DebugToolbarExtension()
 
 def create_app():
 
@@ -41,6 +43,9 @@ def create_app():
     
     if migrate:
         migrate.init_app(app, db)
+
+    if debug_toolbar:
+        debug_toolbar.init_app(app)
  
     with app.app_context():
         #TODO: create db/tables and populate if not exists

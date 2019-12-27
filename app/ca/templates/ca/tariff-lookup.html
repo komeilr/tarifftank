@@ -40,8 +40,17 @@
                     <tbody>
                         {% for fta, rate in t.rates.items() %}
                         <tr>
+                            {# FTA #}
                             <td width="200">{{loop.index}}.&nbsp;&nbsp;<span data-tooltip tabindex="{{loop.index + 1}}" title="tool tip">{{fta | upper}}</span></td>
-                            <td width="400">{{rate}}</td>
+                            
+                            {# Rate format #}
+                            {% if rate != "Free" %}
+                            <td width="400" style="color: black;">{{rate}}</td>
+                            {% else %}
+                            <td width="400" style="opacity: 0.5;">{{rate}}</td>
+                            {% endif %}
+                            
+                            {# UOM #}
                             <td width="100">{{t.uom}}</td>
                         </tr>
                         {% endfor %}
@@ -65,7 +74,30 @@
      
     </div>
     <div class="tabs-panel" id="panel4">
-        <h3>PGA DATA GOES <small>HERE</small></h3>
+        <div class="grid-x grid-margin-x small-margin-collapse">
+            <div class="cell small-12 medium-10 large-11 large-offset-0 medium-offset-1">
+                <table>
+                    <thead>
+                        <th>PGA</th>
+                        <th>Program</th>
+                        <th>Matching Criteria</th>
+                        <th>Pga Link</th>
+                    </thead>
+                    <tbody>
+                        {% if t.pgas %}
+                        {% for pga in t.pgas %}
+                        <tr>
+                            <td width="400">{{pga.name}} ({{pga.code}})</td>
+                            <td widht="400">{{pga.subpganame}}</td>
+                            <td width="100"><a href="{{pga.swilink}}">{{pga.code}}</a></td>
+                            <td widht="100"><a href="{{pga.pgalink}}">{{pga.code}} Home</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

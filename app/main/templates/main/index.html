@@ -5,7 +5,7 @@
 <main>
     
     <div class="grid-y grid-margin-y align-center" style="height:500px;">
-        <div class="cell small-1">
+        <div class="cell small-2">
             <div class="grid-x grid-padding-x align-center">
                 <div class="small-8 cell">
                 {% with messages = get_flashed_messages() %}
@@ -38,7 +38,7 @@
                             <input name="keyword" type="search" placeholder="Enter HS or Keyword">
                         </div>
                         <div class="small-3 medium-4 large-1 cell">
-                            <select name="year" id="">
+                            <select name="year" id="year">
                                     <option value="2020" disabled>2020</option>
                                 {% for i in range(2019, 2017, -1) %}
                                     {% if session['year'] == i | string %}
@@ -50,7 +50,7 @@
                             </select>
                         </div>
                         <div class="small-3 medium-4 large-1 cell">
-                            <select name="region" id="">
+                            <select name="region" id="region">
                                 {% for reg in ['ca', 'us', 'eu'] %}
                                     {% if session['region'] == reg %}
                                     <option value="{{reg}}" selected>{{reg | upper}}</option>

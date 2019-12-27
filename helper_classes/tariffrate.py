@@ -24,6 +24,13 @@ class TariffRateCA:
         # processes query and populates attributes
         self._process()
 
+    
+    def _get_pgas(self):
+        #TODO: write pga query code
+        # query for pga and append list to self.pgas
+        pass
+
+
     def _query_chapter_notes(self):
 
         query = app.ca.models.Chapter.query.filter_by(chapter=self.tariff[:2]).first()
@@ -69,6 +76,7 @@ class TariffRateCA:
                     if hasattr(tariff, fta) and tariff.__getattribute__(fta):
                         self.rates[fta] = tariff.__getattribute__(fta)
 
+        self._get_pgas()
     
     def __str__(self):
         out = ''
