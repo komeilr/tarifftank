@@ -1,4 +1,5 @@
 import csv
+import json
 
 from flask import Blueprint, render_template, redirect, url_for, flash
 from helper_classes.heading import HeadingCA
@@ -30,11 +31,13 @@ def tariff_lookup(year, tariff):
     if len(tariff) == 10:
         try:
             t = TariffRateCA(tariff=tariff, year=year)
+            tt = None
+            with open('app/data/ca/tarifftreatment.json') as f:
+                tt = json.load(f)
+            
+            # PGA    
 
-            # PGA
-      
-
-            return render_template('ca/tariff-lookup.html', title="Tariff Rates", t=t)
+            return render_template('ca/tariff-lookup.html', title="Tariff Rates", t=t, tt=tt)
         except:
             flash(f"invalid 10-digit HS code - {tariff}")
     return redirect(url_for('main.index'))

@@ -41,7 +41,7 @@
                         {% for fta, rate in t.rates.items() %}
                         <tr>
                             {# FTA #}
-                            <td width="200">{{loop.index}}.&nbsp;&nbsp;<span data-tooltip tabindex="{{loop.index + 1}}" title="tool tip">{{fta | upper}}</span></td>
+                            <td width="200"><span data-tooltip class="top" tabindex="2" title="{{tt[fta]}}">{{fta | upper}}</span></td>
                             
                             {# Rate format #}
                             {% if rate != "Free" %}

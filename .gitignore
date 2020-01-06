@@ -8,3 +8,4 @@ app/data/eu/*
 node_modules/
 package-lock.json
 app/static/img/
+app/static/js/661
