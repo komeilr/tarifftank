@@ -2,7 +2,9 @@
 __pycache__/
 .env
 migrations*/
-app/data/
+app/data/ca/*
+app/data/us/*
+app/data/eu/*
 node_modules/
 package-lock.json
 app/static/img/
