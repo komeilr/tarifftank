@@ -28,9 +28,9 @@
     color: #1779ba;
 }
 
-.tabs-content {
+/* .tabs-content {
     min-height: 500px;
-}
+} */
 
 .tabs-title a {
     font-size: 1rem;
@@ -45,7 +45,7 @@ pre {
 }
 
 .top-bar-left ul li {
-    font-size: 1.3rem;
+    font-size: 1.3rem;    
 }
 
 input.button {
@@ -63,4 +63,29 @@ input.button {
 
 .label {
     width:100%;
+}
+
+.footer {
+    min-height: 100px;
+    background-color:darkslategray;
+}
+
+.footer p {
+    padding: 1rem 3rem;
+}
+
+main {
+    min-height: 525px;
+}
+
+div.callout.alert i {
+    font-size: 3rem;
+}
+
+.material-icons.red {
+    color: red;
+}
+
+div.centered-text {
+    text-align: center;
 }

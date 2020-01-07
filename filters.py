@@ -1,27 +1,37 @@
 from jinja2 import Markup
+import re
 
 def embolden(string, keyword):
     """Jinja filter to make bold keyword in string with <strong> tags"""
 
-    words_to_change = []
+    # print(type(string))
+    # words_to_change = []
 
-    # find keyword
-    for word in string.split(): # returnsn list of jinja2.Markup objects
-        if word.lower() == Markup(keyword.lower()):
+    # # find keyword
+    # for word in string.split(): # returns list of jinja2.Markup objects
+    #     if word.lower() == Markup(keyword.lower()):
 
-            if word not in words_to_change:
-                words_to_change.append(word)
+    #         if word not in words_to_change:
+    #             words_to_change.append(word)
 
-    # add <strong> tags
-    for word in words_to_change:
-        string = string.replace(word, Markup(f"<strong>{word}</strong>"))
+    # # print(string.split()[:20])
+    # #print(string)
+    # # add <strong> tags
+    # for word in words_to_change:
+    #     string = string.replace(word, Markup(f'<strong style="background-color: yellow;"><u>{word}</u></strong>'))
     
+    insensitive = re.compile(re.escape(keyword), re.IGNORECASE)
+    insensitive.sub(Markup(f'<strong style="background-color: yellow;"><u>{keyword}</u></strong>'), string)
+
     return string
 
 
 def format_hs(hscode: str) -> str:
     """input: 10 digit string representing HS code\nreturns string of length 13 with 3 dots added to HS code for better readability"""
     out = hscode[:4]
+
+    if not hscode.isdigit():
+        return hscode
 
     if len(hscode) == 4:
         return f"{hscode[:2]}.{hscode[2:]}"

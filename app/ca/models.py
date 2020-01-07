@@ -1,8 +1,11 @@
 from app.factory import db
+from sqlalchemy_fulltext import FullText, FullTextSearch
 
 
-class CA2018(db.Model):
+class CA2018(FullText, db.Model):
     __tablename__ = "ca2018"
+
+    __fulltext_columns__ = ('description',)
 
     id = db.Column(db.Integer, primary_key=True)
     tariff = db.Column(db.String(10), unique=True, nullable=False)

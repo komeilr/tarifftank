@@ -1,17 +1,25 @@
 {% extends "layout.html" %}
-{% from "macros.html" import heading_accordion, notes %}
+{% from "macros.html" import heading_accordion %}
 
 {% block main %}
 
 <div class="callout">
-    <h1>Tariff Heading <small>{{h.heading | format_hs}}</small></h1>
+    <h1>Search:<small> "{{keyword}}"</small></h1>
+    <p>Found {{headings | length}} results</p>
 </div>
 
+{% for heading in headings %}
+    <p>{{heading_accordion(heading.gen_tariff_dict()) | embolden(keyword) }}</p>
+    <hr>
+{% endfor %}
+
+{#
 <ul class="tabs" data-tabs id="example-tabs">
     <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">{{h.heading}}</a></li>
     <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Section Notes</a></li>
     <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Chapter Notes</a></li>
 </ul>
+
 
 
 <div class="tabs-content" data-tabs-content="example-tabs">
@@ -32,5 +40,5 @@
      
     </div>
 </div>
-
+#}
 {% endblock %}

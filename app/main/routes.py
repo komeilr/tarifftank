@@ -15,22 +15,29 @@ def index():
 
     #return json.dumps(heading.gen_tariff_dict())
 
-    return render_template('main/index.html', title="Index")
+    return render_template('main/index.html', title="TariffTank Search")
 
 @main_bp.route('/search', methods=['GET', 'POST'])
-def search():
-    title = "Search"
+def search():    
 
     if request.method == 'POST':
         session['year'] = request.form.get('year')
         session['region'] = request.form.get('region')
         keyword = request.form.get('keyword').replace('.', '')
+        print(len(keyword))
+
+        # no input
+        if not keyword:
+            return redirect(url_for('main.index'))
 
         if len(keyword) == 4 and keyword.isdigit():
             page = 'heading_lookup'
         elif len(keyword) == 10 and keyword.isdigit():
             page = 'tariff_lookup'
-        elif keyword.isalpha():
+        elif ''.join(keyword.split()).isalpha():
+            if len(keyword) < 4:
+                flash("keyword must be minimum 4 characters")
+                return redirect(url_for('main.index'))
             page = 'text_search'
         else:
             flash("Invalid input")
@@ -39,6 +46,12 @@ def search():
 
         if session['region'] == 'ca':
             return redirect(url_for(f'ca.{page}', year=session['year'], tariff=keyword))
+
+        # elif session['region'] == 'us':
+        #     return redirect(url_for(f'us.{page}', year=session['year'], tariff=keyword))
+
+        # elif session['region'] == 'eu':
+        #     return redirect(url_for(f'eu.{page}', year=session['year'], tariff=keyword))
 
     else:
         session['year'] = '2019'

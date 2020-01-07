@@ -5,27 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- SpectreCSS CDN -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"> -->
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Foundation -->
-    <!-- Compressed CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/foundation.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+    <title>{{title | format_hs}}</title>
     
-
-
-
-    <title>{{title}}</title>
 </head>
 <body>
     {% include "includes/_navbar.html" ignore missing %}
     
+    <main>
     {% block main %}{% endblock %}
+    </main>
     
-    {% block footer %}{% endblock %}
+    <div class="footer">
+        {%- block footer %}
+          
+        {%- endblock %}
+        <p>&copy; Copyright 2020 by <a href="#">SexyBeast Inc.</a> TariffTank is powered by <a href="#">trash pandas</a></p>
+    </div>
+
 
 
     <script

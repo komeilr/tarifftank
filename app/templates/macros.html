@@ -2,7 +2,7 @@
 {% macro tariff_info(tariff_obj) %}
 
 {% if tariff_obj.is_link %}
-<a href="{{url_for('ca.tariff_lookup', year=tariff_obj.year, tariff=tariff_obj.tariff)}}" >
+<a href="{{url_for('ca.tariff_lookup', year=session.year, tariff=tariff_obj.tariff)}}" >
 {% else %}
 <a href="#" >
 {% endif %}
@@ -38,7 +38,7 @@
 
 
 <!-- heading_accordion() -->
-{% macro heading_accordion(tariff_dict) %}
+{% macro heading_accordion(tariff_dict, active=False) %}
 <div class="grid-x grid-margin-x align-center">
     <div class="cell small-10 medium-9 large-8">
         {% for k_0, v_0 in tariff_dict.items() %}
@@ -46,8 +46,8 @@
         <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
             <li>{{tariff_info(v_0)}}
             {% for k_1, v_1 in v_0.items() %}
-            {% if v_1 is mapping %}
-            <ul class="menu vertical nested is-active">
+            {% if v_1 is mapping %}            
+            <ul class="menu vertical nested {% if active == True %} is-active {% endif %}">
                 <li>{{tariff_info(v_1)}}
                 {% for k_2, v_2 in v_1.items() %}
                 {% if v_2 is mapping %}                
