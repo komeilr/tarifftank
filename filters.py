@@ -20,10 +20,10 @@ def embolden(string, keyword):
     # for word in words_to_change:
     #     string = string.replace(word, Markup(f'<strong style="background-color: yellow;"><u>{word}</u></strong>'))
     
-    insensitive = re.compile(re.escape(keyword), re.IGNORECASE)
-    insensitive.sub(Markup(f'<strong style="background-color: yellow;"><u>{keyword}</u></strong>'), string)
+    matches = re.findall(f'(?i){keyword}', string, flags=re.I)
+    string = re.sub(f'(?i){keyword}', Markup(f'<span style="background-color: yellow;">{keyword}</span>'), string)
 
-    return string
+    return Markup(string)
 
 
 def format_hs(hscode: str) -> str:

@@ -19,9 +19,10 @@ def heading_lookup(year, tariff):
                 h = HeadingCA(tariff, session['year'])
             else:
                 h = HeadingCA(tariff, year)
-            heading_dict = h.gen_tariff_dict()
+            #heading_dict = h.gen_tariff_dict()
             return render_template('ca/heading-lookup.html', title=f"Heading {tariff}", year=year, h=h)
         except:
+
             flash(f"Invalid heading {tariff}")
     else:
         flash(f"Invalid tariff {tariff}")
@@ -50,14 +51,24 @@ def tariff_lookup(year, tariff):
     return redirect(url_for('main.index'))
 
 
-@ca_bp.route('/text-search/<year>/<tariff>')
+@ca_bp.route('/<year>/chapter/<tariff>')
+def chapter_lookup(year, tariff):
+    chapter = tariff
+    table = vars(app.ca.models)[f"CA{year}"]
+    results = table.query.filter(table.tariff.like(f"{chapter}%"))
+    headings = [HeadingCA(t) for t in sorted(set([i.tariff[:4] for i in results]))[:100]]
+
+    return render_template('ca/chapter-lookup.html', headings=headings, chapter=chapter, title=f"Chapter - {chapter}")    
+
+
+@ca_bp.route('/<year>/text-search/<tariff>')
 def text_search(year, tariff):
     keyword = tariff
     if ''.join(keyword.split()).isalpha():
         table = vars(app.ca.models)[f"CA{year}"]
         results = table.query.filter(table.description.like(f"%{keyword}%"))
         headings = [HeadingCA(t) for t in sorted(set([i.tariff[:4] for i in results]))[:100]]
-        # return f"<h1>{keyword}</h1>"
+
         return render_template('ca/text-search.html', headings=headings, keyword=keyword, title=f"Search - {keyword}")
     else:
         return "Error"

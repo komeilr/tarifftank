@@ -5,7 +5,11 @@ import json
 import string
 
 
-main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates')
+main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates', static_folder='static')
+
+@main_bp.route('/robots.txt')
+def robots():
+    return main_bp.send_static_file('robots.txt')
 
 @main_bp.route('/')
 def index():
@@ -30,7 +34,9 @@ def search():
         if not keyword:
             return redirect(url_for('main.index'))
 
-        if len(keyword) == 4 and keyword.isdigit():
+        if len(keyword) == 2 and keyword.isdigit():
+            page = 'chapter_lookup'
+        elif len(keyword) == 4 and keyword.isdigit():
             page = 'heading_lookup'
         elif len(keyword) == 10 and keyword.isdigit():
             page = 'tariff_lookup'

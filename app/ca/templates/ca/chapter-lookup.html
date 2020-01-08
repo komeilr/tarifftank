@@ -4,12 +4,12 @@
 {% block main %}
 
 <div class="callout">
-    <h1>Search:<small> "{{keyword}}"</small></h1>
-    <p>Found {{headings | length}} results</p>
+    <h1>Chapter:<small> "{{chapter}}"</small></h1>
+    <p>{{headings | length}} headings</p>
 </div>
 
 {% for heading in headings %}
-    <p>{{heading_accordion(heading.gen_tariff_dict()) | embolden(keyword) }}</p>
+    <p>{{heading_accordion(heading.gen_tariff_dict())}}</p>
     <hr>
 {% endfor %}
 

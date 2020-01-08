@@ -11,7 +11,7 @@
     <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tariff Rates</a></li>
     <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Section Notes</a></li>
     <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Chapter Notes</a></li>
-    <li class="tabs-title"><a data-tabs-target="panel4" href="#panel4">PGA</a></li>
+    <li class="tabs-title disabled"><a data-tabs-target="panel4" href="#panel4" disabled>PGA</a></li>
 </ul>
 
 <div class="tabs-content" data-tabs-content="example-tabs">
@@ -21,7 +21,13 @@
         {% if hs != "None" %}
         <div class="grid-x grid-padding-x">
             <div class="cell small-4 medium-3 large-2 text-right">
-                <p>{{hs | format_hs}}</p>
+                <p>
+                    {% if hs | length == 4 %}
+                    <a href="{{url_for('ca.heading_lookup', year=t.year, tariff=hs)}}">{{hs | format_hs}}</a>
+                    {% else %}
+                    {{hs | format_hs}}
+                    {% endif %}
+                </p>
             </div>
             <div class="cell auto description">
                 <p>{{description}}</p>

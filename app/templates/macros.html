@@ -103,3 +103,37 @@
 {% endif %}
 
 {% endmacro %}
+
+{% macro bookview(bookviewlist) %}
+
+<table>
+    <thead>
+        <th>Tariff Item</th>
+        <th>SS</th>
+        <th>Description of Goods</th>
+        <th>Unit of Measure</th>
+        <th>MFN Tariff</th>
+        <th>Applicable Preferential Tariffs</th>
+    </thead>
+    <tbody>
+        {% for row in bookviewlist %}
+        <tr>
+            {# FTA 
+            <!-- <td width="200"><span data-tooltip class="top" tabindex="2" title="{{tt[fta]}}">{{fta | upper}}</span></td> -->
+            #}
+            <td width=60>{{row.tariff | format_hs}}</td>
+            <td width=50><a href="{{url_for('ca.tariff_lookup', year=session.year, tariff=row.tariff + row.ss)}}"><u>{{row.ss}}</u></a></td>
+            <td>{{row.description}}</td>
+            <td width=50>{{row.uom}}</td>
+            <td width=100>{{row.mfn}}</td>
+            <td width=150>
+                {% for k, v in row.apt.items()%}
+                {{v | join(', ') | upper()}}: {{k}}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endmacro %}

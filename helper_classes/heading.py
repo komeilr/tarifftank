@@ -1,3 +1,5 @@
+import copy
+
 import app.ca.models
 
 
@@ -124,37 +126,60 @@ class HeadingCA:
                     print("\t" * v['level'] + "-" * (len(k) - 5) + f" {v['description']}")
                 else:
                     print("\t" * v['level'], self._format_hs(k), "-" * (len(k) - 5), v['description'])
-                self.book_view_terinal(v)
+                self.book_view_terminal(v)
 
 
     def book_view_web(self):
         out = []
-        for t in self.tariffs:
-            d = {'tariff':'', 'ss':'', 'description':'', 'uom':'', 'mfn':'', 'free':[]}
+        duty_rate_8 = None
+        for t in self.tariffs:            
+            d = {'tariff':'', 'ss':'', 'description':'', 'uom':'', 'mfn':'', 'apt':{}}
+
             if t.tariff:
-                if len(t.tariff) < 10:
-                    d['tariff'] = t.tariff
-                else:
+                if len(t.tariff) % 2 == 1:
+                    d['tariff'] = ''
+                    
+                elif len(t.tariff) == 10:                    
+                    d['tariff'] = t.tariff[:8]
                     d['ss'] = t.tariff[-2:]
+
+                elif len(t.tariff) == 8:
+                    duty_rate_8 = copy.deepcopy(t)
+                    print(duty_rate_8)
+                    d['tariff'] = ''
+                else:
+                    d['tariff'] = t.tariff[:8]                
             
             if t.description:
+                print(t.description)
                 d['description'] = t.description
             
             if t.uom:
                 d['uom'] = t.uom
 
-            if t.mfn:
-                d['mfn'] = t.mfn
+            t_to_check = t
+            if len(t.tariff) == 10:
+                if not t.mfn:
+                    d['mfn'] = duty_rate_8.mfn
+                    t_to_check = duty_rate_8                    
+            
+                else:
+                    d['mfn'] = t.mfn
+                    duty_rate_8 = None
 
-            for fta in ['gt', 'aut', 'nzt', 'ccct', 'ldct', 'gpt', 'ust', 'mt', 'must', 'ciat', 'ct', 
-    'crt', 'it', 'nt', 'slt', 'pt', 'colt', 'jt', 'pat', 'hnt', 'krt', 'ceut', 'uat', 'cptpt']:
-                if hasattr(t, fta) and t.__getattribute__(fta):
-                    if t.__getattribute__(fta).lower() == 'free':
-                        d['free'].append(fta)
-                    else:
-                        d[fta] = t.__getattribute__(fta)
+                for fta in ['gt', 'aut', 'nzt', 'ccct', 'ldct', 'gpt', 'ust', 'mt', 'must', 'ciat', 'ct', 
+                            'crt', 'it', 'nt', 'slt', 'pt', 'colt', 'jt', 'pat', 'hnt', 'krt', 'ceut', 'uat', 
+                            'cptpt']:
+                    
+                    if hasattr(t_to_check, fta) and t_to_check.__getattribute__(fta):
+                        tariff_fta = t_to_check.__getattribute__(fta)
+
+                        if tariff_fta in d['apt']:
+                            d['apt'][tariff_fta].append(fta)
+                        else:
+                            d['apt'][tariff_fta] = [fta]
+            
             out.append(d)
 
-        return out
-                    
+        return out                  
 

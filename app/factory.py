@@ -18,6 +18,7 @@ def create_app():
     check_env_vars(['DATABASE_URI', 'SECRET_KEY'])
 
     app = Flask(__name__)
+    
 
     # Set app configuration
     if not os.environ.get('FLASK_ENV'):
