@@ -10,7 +10,7 @@ FTAS =  [
 class TariffRateCA:
     """ class used to obtain tariff rates and full stack description of 10-digit HS code"""
 
-    def __init__(self, tariff, year='2019'):
+    def __init__(self, tariff, year='2020'):
         self.year = year
         self.tariff = self._validate_tariff(tariff)        
         self.tobjs = self._get_rate_info()

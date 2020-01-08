@@ -6,7 +6,7 @@ import app.ca.models
 class HeadingCA:
     """class to hold all tariff classifications in a heading"""
 
-    def __init__(self, heading, year='2019'):
+    def __init__(self, heading, year='2020'):
         self.heading = self._validate_input(heading)
         self.year = self._validate_input(year)
         self.tariffs = self._query_tariffs()

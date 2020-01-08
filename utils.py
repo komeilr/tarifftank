@@ -21,13 +21,13 @@ def execute(query, fetch='all'):
 
 def pop_table(table):
     """ Populates Tables given table class """
-    with app.app_context():
-        data = json_to_obj(json_to_str(table.__tablename__))
-        for row in data:
-            entry = table(**row)
-            db.session.add(entry)
 
-        db.session.commit()
+    data = json_to_obj(json_to_str(table.__tablename__))
+    for row in data:
+        entry = table(**row)
+        db.session.add(entry)
+
+    db.session.commit()
 
 
 def populate_section_notes():

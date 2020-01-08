@@ -67,7 +67,7 @@ def text_search(year, tariff):
     if ''.join(keyword.split()).isalpha():
         table = vars(app.ca.models)[f"CA{year}"]
         results = table.query.filter(table.description.like(f"%{keyword}%"))
-        headings = [HeadingCA(t) for t in sorted(set([i.tariff[:4] for i in results]))[:100]]
+        headings = [HeadingCA(t, year) for t in sorted(set([i.tariff[:4] for i in results]))[:100]]
 
         return render_template('ca/text-search.html', headings=headings, keyword=keyword, title=f"Search - {keyword}")
     else:

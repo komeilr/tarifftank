@@ -1,5 +1,6 @@
 import json
 import csv
+import os
 
 
 def json_to_str(filename):
@@ -36,5 +37,29 @@ def to_csv(data, filename, path='.'):
                 writer.writerow(row.values())
         
         return True
+
+def csv_to_json(filename, path='./'):
+    data = []
+    out = []
+    try:
+        with open(f'{path}{filename}.csv', 'r') as f:
+            reader = csv.reader(f, delimiter=',', quotechar='"')
+
+            for line in reader:
+                data.append(line)
+
+        keys = data[0]
+        rows = data[1:]
+
+        for line in rows:
+            l = line[:]
+            l[0] = l[0].replace('.', '')
+            out.append({k:v for k, v in zip(keys, l)})
+
+        with open(f'{path}{filename}.json', 'w') as f:
+            json.dump(out, f)
+
+    except Exception as e:
+        print(e)
 
 

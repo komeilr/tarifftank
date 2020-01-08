@@ -60,7 +60,7 @@ def search():
         #     return redirect(url_for(f'eu.{page}', year=session['year'], tariff=keyword))
 
     else:
-        session['year'] = '2019'
+        session['year'] = '2020'
         session['region'] = 'ca'
     print(session['year'])
     print(session['region'])

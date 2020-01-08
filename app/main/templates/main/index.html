@@ -40,9 +40,8 @@
                             <input name="keyword" type="search" placeholder="Enter HS or Keyword">
                         </div>
                         <div class="small-3 medium-4 large-1 cell">
-                            <select name="year" id="year">
-                                    <option value="2020" disabled>2020</option>
-                                {% for i in range(2019, 2017, -1) %}
+                            <select name="year" id="year">                                    
+                                {% for i in range(2020, 2017, -1) %}
                                     {% if session['year'] == i | string %}
                                     <option value="{{i}}" selected>{{i}}</option>
                                     {% else %}
