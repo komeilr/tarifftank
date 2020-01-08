@@ -89,3 +89,7 @@ div.callout.alert i {
 div.centered-text {
     text-align: center;
 }
+
+.highlight {
+    background-color: yellow;;
+}
