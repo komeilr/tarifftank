@@ -18,7 +18,7 @@ debug_toolbar = DebugToolbarExtension()
 
 def create_app():
 
-    check_env_vars(['DATABASE_URI', 'SECRET_KEY'])
+    #check_env_vars(['DATABASE_URI', 'SECRET_KEY'])
 
     app = Flask(__name__)
     
