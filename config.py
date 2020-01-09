@@ -7,7 +7,7 @@ class Config:
     global BASEDIR
     TESTING = False
     DEBUG = False
-    DEBUG_TB_ENABLED = True
+    DEBUG_TB_ENABLED = False
     SECRET_KEY = 'change-this-shitty-key'
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
