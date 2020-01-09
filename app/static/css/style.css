@@ -98,3 +98,7 @@ div.centered-text {
 .highlight {
     background-color: yellow;;
 }
+
+li a.red {
+    color: red;
+}

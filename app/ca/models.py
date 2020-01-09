@@ -1,6 +1,4 @@
 from app.factory import db
-from sqlalchemy_fulltext import FullText, FullTextSearch
-
 
 class CA2018(FullText, db.Model):
     __tablename__ = "ca2018"

@@ -11,13 +11,14 @@
     <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tariff Rates</a></li>
     <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Section Notes</a></li>
     <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Chapter Notes</a></li>
-    {% if t.pga %}
+    {%- if t.pga %}
     <li class="tabs-title"><a data-tabs-target="panel4" href="#panel4">PGA</a></li>
     {% endif %}
 
-    {% if sima_info %}
-    <li class="tabs-title"><a data-tabs-target="panel5" href="#panel5">SIMA</a></li>
-    {% endif %}
+    {# IF sima_info link is red #}
+    <li class="tabs-title">        
+        <a class="{% if sima_info %}red{% endif %}" data-tabs-target="panel5" href="#panel5">SIMA</a>
+    </li>
 </ul>
 
 <div class="tabs-content" data-tabs-content="example-tabs">
@@ -114,6 +115,7 @@
     <div class="tabs-panel" id="panel5">
         <div class="grid-x grid-margin-x small-margin-collapse">
             <div class="cell small-12">
+                {% if sima_info %}
                 <table>
                     <thead>
                         <th>Case</th>
@@ -125,11 +127,14 @@
                         <tr>
                             <td width="200"><a href="https://www.cbsa-asfc.gc.ca{{sima['link']}}">{{sima.Case}}</a></td>
                             <td width="300">{{sima['Case type']}}</td>
-                            <td>{{sima['Tariff classification numbers'] | format_hslist | join(', ')}}</td>                            
+                            <td>{{sima['Tariff classification numbers'] | format_hslist | join(' , ')}}</td>                            
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                {% else %}
+                <div class="text-left">This tariff is not subject to SIMA duties</div>
+                {% endif %}
             </div>
         </div>
     </div>
