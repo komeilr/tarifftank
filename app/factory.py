@@ -24,8 +24,8 @@ def create_app():
     
 
     # Set app configuration
-    if not os.environ.get('FLASK_ENV'):
-        raise ValueError("env variable doesn't exist")
+    # if not os.environ.get('FLASK_ENV'):
+    #     raise ValueError("env variable doesn't exist")
     if os.environ.get('FLASK_ENV') == 'production':
         app.config.from_object(config.ProductionConfig)
     else:

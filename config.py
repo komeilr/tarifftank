@@ -1,7 +1,11 @@
 import os
+from os.path import join
+from dotenv import load_dotenv
+
 
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(join(BASEDIR, '.env'))
 
 class Config:
     global BASEDIR
@@ -30,6 +34,7 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
+    FLASK_ENV=os.environ.get('FLASK_ENV') or 'production'
     SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_POOL_TIMEOUT = 20
