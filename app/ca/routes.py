@@ -40,12 +40,12 @@ def tariff_lookup(year, tariff):
             else:
                 t = TariffRateCA(tariff=tariff, year=year)
             tt = None
-            with open('~/vector/tarifftank/app/data/ca/tarifftreatment.json', 'r') as f:
+            with open('/home/vector/tarifftank/app/data/ca/tarifftreatment.json', 'r') as f:
                 tt = json.load(f)
 
             # SIMA
             sima_info = []
-            with open('~/vector/tarifftank/app/data/ca/sima_info.json', 'r') as f:
+            with open('/home/vector/tarifftank/app/data/ca/sima_info.json', 'r') as f:
                 sima = json.load(f)
                 for row in sima:
                     if t.tariff in row['Tariff classification numbers'].replace(' ', '').split(','):
