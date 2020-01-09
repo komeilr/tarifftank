@@ -40,13 +40,23 @@ def tariff_lookup(year, tariff):
             else:
                 t = TariffRateCA(tariff=tariff, year=year)
             tt = None
-            with open('app/data/ca/tarifftreatment.json') as f:
+            with open('app/data/ca/tarifftreatment.json', 'r') as f:
                 tt = json.load(f)
+
+            # SIMA
+            sima_info = []
+            with open('app/data/ca/sima_info.json', 'r') as f:
+                sima = json.load(f)
+                for row in sima:
+                    if t.tariff in row['Tariff classification numbers'].replace(' ', '').split(','):
+                        sima_info.append(row)
+            print(sima_info)
             
             # PGA    
 
-            return render_template('ca/tariff-lookup.html', title=t.tariff, t=t, tt=tt)
-        except:
+            return render_template('ca/tariff-lookup.html', title=t.tariff, t=t, tt=tt, sima_info=sima_info)
+        except Exception as e:
+            print(f"ERROR: {e}")
             flash(f"invalid 10-digit HS code - {tariff}")
     return redirect(url_for('main.index'))
 

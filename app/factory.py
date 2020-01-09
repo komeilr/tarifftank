@@ -34,9 +34,11 @@ def create_app():
     app.jinja_env.keep_trailing_newline = True
 
     # add filters
-    from filters import embolden, format_hs
+    from filters import embolden, format_hs, format_hslist
     app.jinja_env.filters['embolden'] = embolden
     app.jinja_env.filters['format_hs'] = format_hs
+    app.jinja_env.filters['format_hslist'] = format_hslist
+
 
     # initialize DB
     if db:

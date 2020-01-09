@@ -3,6 +3,7 @@ import copy
 import app.ca.models
 
 
+
 class HeadingCA:
     """class to hold all tariff classifications in a heading"""
 

@@ -26,7 +26,7 @@ def embolden(string, keyword):
     return Markup(string)
 
 
-def format_hs(hscode: str) -> str:
+def format_hs(hscode):
     """input: 10 digit string representing HS code\nreturns string of length 13 with 3 dots added to HS code for better readability"""
     out = hscode[:4]
 
@@ -45,3 +45,8 @@ def format_hs(hscode: str) -> str:
     if len(hscode) == 10:
         return f"{hscode[:4]}.{hscode[4:6]}.{hscode[6:8]}.{hscode[8:]}"
     return ""
+
+
+def format_hslist(hslist):
+
+    return [format_hs(hs.replace(',', '')) for hs in hslist.split()]

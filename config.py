@@ -17,8 +17,7 @@ class Config:
         'pool_size':20,
         'pool_recycle':120,
         'pool_pre_ping':True
-    }
-    
+    }   
 
 
 class DevelopmentConfig(Config):
