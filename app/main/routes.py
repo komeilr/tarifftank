@@ -21,6 +21,12 @@ def index():
 
     return render_template('main/index.html', title="TariffTank Search")
 
+
+@main_bp.route('/about')
+def about():
+
+    return render_template('main/about.html', title="About TariffTank(c)")
+
 @main_bp.route('/search', methods=['GET', 'POST'])
 def search():    
 
