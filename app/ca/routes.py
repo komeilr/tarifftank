@@ -57,7 +57,7 @@ def tariff_lookup(year, tariff):
             return render_template('ca/tariff-lookup.html', title=t.tariff, t=t, tt=tt, sima_info=sima_info)
         except Exception as e:
             print(f"ERROR: {e}")
-            flash(f"invalid 10-digit HS code - {tariff}")
+            flash(f"invalid 10-digit HS code - {tariff}, {e}")
     return redirect(url_for('main.index'))
 
 

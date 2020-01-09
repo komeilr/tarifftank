@@ -39,8 +39,11 @@ class ProductionConfig(Config):
     SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_POOL_TIMEOUT = 20
-    SQLALCHEMY_POOL_SIZE= 20
-    SQLALCHEMY_POOL_RECYCLE= 120
+    SQLALCHEMY_ENGINE_OPTIONS = {
+    'pool_size':20,
+    'pool_recycle':120,
+    'pool_pre_ping':True    
+}
     
 
 class TestingConfig(Config):
