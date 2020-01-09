@@ -1,6 +1,6 @@
 from app.factory import db
 
-class CA2018(FullText, db.Model):
+class CA2018(db.Model):
     __tablename__ = "ca2018"
 
     __fulltext_columns__ = ('description',)
