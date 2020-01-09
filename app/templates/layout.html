@@ -21,13 +21,10 @@
     <main>
     {% block main %}{% endblock %}
     </main>
-    
-    <div class="footer">
-        {%- block footer %}
-          
-        {%- endblock %}
-        <p>&copy; Copyright 2020 by <a href="#">SexyBeast Inc.</a> TariffTank is powered by <a href="#">trash pandas</a></p>
-    </div>
+
+    {% include "includes/_footer.html" ignore missing %}
+        
+
 
 
 

@@ -66,12 +66,13 @@ input.button {
 }
 
 .footer {
-    min-height: 100px;
+    /* min-height: 100px; */
     background-color:darkslategray;
 }
 
-.footer p {
+.footer {
     padding: 1rem 3rem;
+    color: white;
 }
 
 main {
@@ -84,6 +85,10 @@ div.callout.alert i {
 
 .material-icons.red {
     color: red;
+}
+
+i.big {
+    font-size: 72px;
 }
 
 div.centered-text {

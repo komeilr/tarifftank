@@ -17,7 +17,9 @@ class Config:
         'pool_size':20,
         'pool_recycle':120,
         'pool_pre_ping':True
-    }   
+    }
+
+    RATELIMIT_DEFAULT = "1/second"
 
 
 class DevelopmentConfig(Config):

@@ -3,6 +3,8 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from flask_debugtoolbar import DebugToolbarExtension
 import config
 
@@ -11,6 +13,7 @@ from checkers import check_env_vars
 # instantiate db
 db = SQLAlchemy()
 migrate = Migrate()
+limiter = Limiter(key_func=get_remote_address)
 debug_toolbar = DebugToolbarExtension()
 
 def create_app():
@@ -40,15 +43,11 @@ def create_app():
     app.jinja_env.filters['format_hslist'] = format_hslist
 
 
-    # initialize DB
-    if db:
-        db.init_app(app)
-    
-    if migrate:
-        migrate.init_app(app, db)
-
-    if debug_toolbar:
-        debug_toolbar.init_app(app)
+    # initialize extensions
+    db.init_app(app)    
+    migrate.init_app(app, db)
+    limiter.init_app(app)
+    debug_toolbar.init_app(app)
  
     with app.app_context():
         #TODO: create db/tables and populate if not exists

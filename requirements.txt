@@ -5,3 +5,5 @@ mysqlclient==1.4.6
 beautifulsoup4==4.8.1
 requests==2.22.0
 Flask-DebugToolbar==0.10.1
+Flask-Limiter==1.1.0
+lxml==4.4.2

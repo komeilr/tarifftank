@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response, jsonify
 from helper_classes.heading import HeadingCA
 from helper_classes.tariffrate import TariffRateCA
 import json
@@ -68,7 +68,9 @@ def search():
     return redirect(url_for('main.index'))
 
 
-
+@main_bp.errorhandler(429)
+def ratelimit_handler(e):
+    return render_template('main/rate-limit.html', title="RATE LIMIT EXCEEDED")
 
 
     
