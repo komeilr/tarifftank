@@ -1,4 +1,9 @@
 
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
 .top-bar, .top-bar ul {
     background-color: white;
 }
@@ -68,6 +73,9 @@ input.button {
 .footer {
     /* min-height: 100px; */
     background-color:darkslategray;
+    /* position: absolute;
+    bottom: 0;
+    width: 100%; */
 }
 
 .footer {
@@ -76,7 +84,7 @@ input.button {
 }
 
 main {
-    min-height: 525px;
+    padding-bottom: 210px;
 }
 
 div.callout.alert i {
