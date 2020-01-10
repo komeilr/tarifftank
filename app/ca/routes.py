@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 
 from flask import Blueprint, render_template, redirect, url_for, flash, session
 
@@ -22,9 +23,9 @@ def heading_lookup(year, tariff):
                 h = HeadingCA(tariff, year)
             #heading_dict = h.gen_tariff_dict()
             return render_template('ca/heading-lookup.html', title=f"Heading {tariff}", year=year, h=h)
-        except:
-
-            flash(f"Invalid heading {tariff}")
+        except Exception as e:
+            
+            flash(f"Invalid heading {tariff}, {e}")
     else:
         flash(f"Invalid tariff {tariff}")
     return redirect(url_for('main.index'))
@@ -36,20 +37,23 @@ def tariff_lookup(year, tariff):
     #TODO: include s/ch notes and pga
     if len(tariff) == 10:
         try:
+            dev = ''
+            if os.environ.get('FLASK_ENV') == 'development':
+                dev = '/kras'
             if session['year']:
                 t = TariffRateCA(tariff=tariff, year=session['year'])
             else:
                 t = TariffRateCA(tariff=tariff, year=year)
             tt = None
-            with open('/home/vector/tarifftank/app/data/ca/tarifftreatment.json', 'r') as f:
+            with open(f'/home{dev}/vector/tarifftank/app/data/ca/tarifftreatment.json', 'r') as f:
                 tt = json.load(f)
 
             # SIMA
             sima_info = []
-            with open('/home/vector/tarifftank/app/data/ca/sima_info.json', 'r') as f:
+            with open(f'/home{dev}/vector/tarifftank/app/data/ca/sima_info.json', 'r') as f:
                 sima = json.load(f)
                 for row in sima:
-                    if t.tariff in row['Tariff classification numbers'].replace(' ', '').split(','):
+                    if t.tariff in row['Tariff classification numbers']:
                         sima_info.append(row)
             print(sima_info)
             

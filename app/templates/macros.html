@@ -25,6 +25,7 @@
         </div>    
 
         <div class="cell auto description">
+            {{"- " * tariff_obj.level + "-"}}
             {% if tariff_obj.is_heading %}
             <strong>{{tariff_obj.description}}</strong>
             {% else %}
@@ -125,7 +126,7 @@
             <td>{{row.description}}</td>
             <td width=50>{{row.uom}}</td>
             <td width=100>{{row.mfn}}</td>
-            <td width=150>
+            <td width=200>
                 {% for k, v in row.apt.items()%}
                 {{v | join(', ') | upper()}}: {{k}}<br>
                 {% endfor %}
