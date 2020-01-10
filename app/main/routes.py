@@ -27,6 +27,15 @@ def about():
 
     return render_template('main/about.html', title="About TariffTank(c)")
 
+
+@main_bp.route('/devblog')
+def devblog():
+    return "Dev Blog"
+
+@main_bp.route('/contact')
+def contact():
+    return "CONTACT"
+
 @main_bp.route('/search', methods=['GET', 'POST'])
 def search():    
 

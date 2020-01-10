@@ -110,3 +110,7 @@ div.centered-text {
 li a.red {
     color: red;
 }
+
+hr {
+    margin: 0;
+}

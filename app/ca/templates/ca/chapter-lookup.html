@@ -2,16 +2,13 @@
 {% from "macros.html" import heading_accordion %}
 
 {% block main %}
-
 <div class="callout">
     <h1>Chapter:<small> "{{chapter}}"</small></h1>
     <p>{{headings | length}} headings</p>
 </div>
 
 {% for heading in headings %}
-    <p>{{heading_accordion(heading.gen_tariff_dict())}}</p>
-    <hr>
+{{heading_accordion(heading.gen_tariff_dict())}}
+<hr>
 {% endfor %}
-
-
 {% endblock %}
