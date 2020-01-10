@@ -7,38 +7,34 @@ import string
 
 main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates', static_folder='static')
 
+
 @main_bp.route('/robots.txt')
 def robots():
     return main_bp.send_static_file('robots.txt')
 
-@main_bp.route('/')
+
+@main_bp.route('/') # ----------ROOT-------------
 def index():
-
-    # h = HeadingCA('8467')
-    # heading = h.gen_tariff_dict()
-
-    #return json.dumps(heading.gen_tariff_dict())
-
     return render_template('main/index.html', title="TariffTank Search")
 
 
-@main_bp.route('/about')
+@main_bp.route('/about') # ----------ABOUT-------------
 def about():
-
     return render_template('main/about.html', title="About TariffTank(c)")
 
 
-@main_bp.route('/devblog')
+@main_bp.route('/devblog') # ----------DEV BLOG-------------
 def devblog():
-    return "Dev Blog"
+    return render_template('main/dev-blog.html', title="Dev Blog")
 
-@main_bp.route('/contact')
+
+@main_bp.route('/contact')# ----------CONTACT-------------
 def contact():
-    return "CONTACT"
+    return render_template('main/contact.html', title='Contact')
 
-@main_bp.route('/search', methods=['GET', 'POST'])
+
+@main_bp.route('/search', methods=['GET', 'POST']) # ----------SEARCH-------------
 def search():    
-
     if request.method == 'POST':
         session['year'] = request.form.get('year')
         session['region'] = request.form.get('region')
@@ -86,6 +82,4 @@ def search():
 @main_bp.errorhandler(429)
 def ratelimit_handler(e):
     return render_template('main/rate-limit.html', title="RATE LIMIT EXCEEDED")
-
-
     

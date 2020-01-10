@@ -73,12 +73,9 @@ input.button {
 .footer {
     /* min-height: 100px; */
     background-color:darkslategray;
-    /* position: absolute;
+    position: absolute;
     bottom: 0;
-    width: 100%; */
-}
-
-.footer {
+    width: 100%;
     padding: 1rem 3rem;
     color: white;
 }
@@ -113,4 +110,8 @@ li a.red {
 
 hr {
     margin: 0;
+}
+
+li a.button {
+    font-size: 1.2rem;
 }

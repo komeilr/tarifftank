@@ -16,17 +16,13 @@
     
 </head>
 <body>
-    {% include "includes/_navbar.html" ignore missing %}
-    
+    {% from "macros.html" import navbar %}
+    {{ navbar() }}    
     <main>
     {% block main %}{% endblock %}
     </main>
 
     {% include "includes/_footer.html" ignore missing %}
-        
-
-
-
 
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"

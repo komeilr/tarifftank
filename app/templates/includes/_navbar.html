@@ -6,18 +6,20 @@
 <div data-sticky-container>
     <div class="top-bar" id="responsive-menu" data-responsive-toggle="responsive-menu" data-hide-for="medium" data-sticky-options="marginTop:0;" style="width:100%;" data-top-anchor="1">
         <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>                
-                <li class="float-left"><a href="{{url_for('main.index')}}"><img style="max-height: 50px;" src="{{url_for('static', filename='img/logo_340_77.png')}}" alt="Logo"></a></li>
+            <ul class="dropdown menu" data-dropdown-menu>
+                {#- LOGO #}              
+                <li class="float-left">
+                    <a class="clear button" href="{{url_for('main.index')}}"><img style="max-height: 50px;" src="{{url_for('static', filename='img/logo_340_77.png')}}" alt="Logo"></a>
+                </li>
             </ul>
-        </div>
-       
+        </div>       
         <div class="top-bar-right">
             <ul class="menu">
-            <li class="align-middle"><a href="{{url_for('main.index')}}">Search</a></li>
-            <li><a href="{{url_for('main.devblog')}}">Dev-Blog</a></li>
-            <li><a href="{{url_for('main.about')}}">About</a></li>
-            <li><a href="{{url_for('main.contact')}}">Contact</a></li>
-            
+                {# MENU ITEMS #}
+                <li class="align-middle"><a class="clear button" href="{{url_for('main.index')}}">Search</a></li>
+                <li><a class="clear button" href="{{url_for('main.about')}}">About</a></li>
+                <li><a class="clear button" href="#" disabled>Dev-Blog</a></li>            
+                <li><a class="clear button" href="#" disabled>Contact</a></li>            
             </ul>
         </div>
     </div>
