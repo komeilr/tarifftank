@@ -10,19 +10,26 @@ import click
 app = create_app()
 
 @app.cli.command(name='buildapp')
-def create():
+def buildapp():
     """Builds database"""    
      
     try:
         if "migrations" not in os.listdir():
+            db.session.execute("create database tarifftankdb;")
+            db.session.commit()
             print("Initializing database")
             os.system("flask db init")
+
         print('Migrating database')
         os.system("flask db migrate")
 
         print('Upgrading database')
         os.system("flask db upgrade")
 
+        print("populating tables")
+        from utils import pop_table
+        for t in [CA2018, CA2019, CA2020]:
+            pop_table(t)
 
     except Exception as e:
         print(e)
