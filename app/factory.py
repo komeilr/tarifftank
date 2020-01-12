@@ -44,10 +44,14 @@ def create_app():
 
 
     # initialize extensions
-    db.init_app(app)    
-    migrate.init_app(app, db)
-    limiter.init_app(app)
-    debug_toolbar.init_app(app)
+    if db:
+        db.init_app(app)    
+    if migrate: 
+        migrate.init_app(app, db)
+    if limiter:
+        limiter.init_app(app)
+    if debug_toolbar:
+        debug_toolbar.init_app(app)
  
     with app.app_context():
         #TODO: create db/tables and populate if not exists
