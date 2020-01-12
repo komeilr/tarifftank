@@ -11,14 +11,12 @@ app = create_app()
 
 @app.cli.command(name='buildapp')
 def buildapp():
-    """Builds database"""    
-     
+    """Builds database"""
+
     try:
-        if "migrations" not in os.listdir():
-            db.session.execute("create database tarifftankdb;")
-            db.session.commit()
+        if "migrations" not in os.listdir():   
             print("Initializing database")
-            os.system("flask db init")
+            os.system("flask db init")    
 
         print('Migrating database')
         os.system("flask db migrate")
@@ -33,6 +31,15 @@ def buildapp():
 
     except Exception as e:
         print(e)
+        os.system("flask drop_db")
+
+
+@app.cli.command(name='drop_db')
+def drop_db():
+    """Drops database and all tables"""
+
+    if "migrations" in os.listdir():
+        os.system("rm -r migrations;")
 
 @app.shell_context_processor
 def make_shell_context():
