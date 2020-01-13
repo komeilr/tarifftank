@@ -12,28 +12,32 @@ main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates
 def robots():
     return main_bp.send_static_file('robots.txt')
 
-
-@main_bp.route('/') # ----------ROOT-------------
+# ----------ROOT-------------
+@main_bp.route('/') 
 def index():
     return render_template('main/index.html', title="TariffTank Search")
 
 
-@main_bp.route('/about') # ----------ABOUT-------------
+# ----------ABOUT-------------
+@main_bp.route('/about') 
 def about():
     return render_template('main/about.html', title="About TariffTank(c)")
 
 
-@main_bp.route('/devblog') # ----------DEV BLOG-------------
+# ----------DEV BLOG-------------
+@main_bp.route('/devblog') 
 def devblog():
     return render_template('main/dev-blog.html', title="Dev Blog")
 
 
-@main_bp.route('/contact')# ----------CONTACT-------------
+# ----------CONTACT-------------
+@main_bp.route('/contact')
 def contact():
     return render_template('main/contact.html', title='Contact')
 
 
-@main_bp.route('/search', methods=['GET', 'POST']) # ----------SEARCH-------------
+# ----------SEARCH-------------
+@main_bp.route('/search', methods=['GET', 'POST']) 
 def search():    
     if request.method == 'POST':
         session['year'] = request.form.get('year') or session['year']

@@ -12,16 +12,14 @@ ca_bp = Blueprint('ca', __name__, url_prefix='/ca/', template_folder='templates'
 
 @ca_bp.route('/<year>/heading/<tariff>')
 def heading_lookup(year, tariff):
-    #TODO: add PGA stats
 
-    # h object contains chapter and section notes
     if len(tariff) in [4, 6]:
         try:
             if session['year']:
                 h = HeadingCA(tariff, session['year'])
             else:
                 h = HeadingCA(tariff, year)
-            #heading_dict = h.gen_tariff_dict()
+      
             return render_template('ca/heading-lookup.html', title=f"Heading {tariff}", year=year, h=h)
         except Exception as e:            
             flash(f"Invalid heading {tariff}, {e}")
@@ -32,8 +30,7 @@ def heading_lookup(year, tariff):
 
 @ca_bp.route('/<year>/tariff/<tariff>')
 def tariff_lookup(year, tariff):
-    #TODO: lookup tariff
-    #TODO: include s/ch notes and pga
+
     if len(tariff) == 10:
         try:
             dev = ''
