@@ -9,6 +9,5 @@
 
 {% for heading in headings %}
 {{heading_accordion(heading.gen_tariff_dict()) | embolden(keyword) }}
-<hr>
 {% endfor %}
 {% endblock %}
