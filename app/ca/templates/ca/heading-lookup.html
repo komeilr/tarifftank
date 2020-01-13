@@ -4,7 +4,7 @@
 {% block main %}
 
 <div class="callout">
-    <h1>Tariff Heading <small>{{h.heading | format_hs}}</small></h1>
+    <h1>{% if h.heading | length == 4 %}Heading {% else %}Sub-heading {% endif %}<small>{{h.heading | format_hs}}</small></h1>
 </div>
 
 <ul class="tabs" data-tabs id="example-tabs">

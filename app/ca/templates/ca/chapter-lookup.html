@@ -3,12 +3,20 @@
 
 {% block main %}
 <div class="callout">
-    <h1>Chapter:<small> "{{chapter}}"</small></h1>
+    <div class="grid-x">
+        <div class="cell small-6 align-left">
+            <h1>Chapter:<small> "{{chapter}}"</small></h1>
+        </div>
+        <div class="cell small-6">
+            <p class="float-right">hello</p>
+        </div>
+    </div>
+    
     <p>{{headings | length}} headings</p>
 </div>
 
 {% for heading in headings %}
 {{heading_accordion(heading.gen_tariff_dict())}}
-<hr>
+
 {% endfor %}
 {% endblock %}

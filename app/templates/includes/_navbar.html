@@ -1,26 +1,92 @@
-
-<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
-    <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
-    <div class="title-bar-title">Menu</div>
-</div>
 <div data-sticky-container>
-    <div class="top-bar" id="responsive-menu" data-responsive-toggle="responsive-menu" data-hide-for="medium" data-sticky-options="marginTop:0;" style="width:100%;" data-top-anchor="1">
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
-                {#- LOGO #}              
-                <li class="float-left">
-                    <a class="clear button" href="{{url_for('main.index')}}"><img style="max-height: 50px;" src="{{url_for('static', filename='img/logo_340_77.png')}}" alt="Logo"></a>
-                </li>
-            </ul>
-        </div>       
-        <div class="top-bar-right">
-            <ul class="menu">
-                {# MENU ITEMS #}
-                <li class="align-middle"><a class="clear button" href="{{url_for('main.index')}}">Search</a></li>
-                <li><a class="clear button" href="{{url_for('main.about')}}">About</a></li>
-                <li><a class="clear button" href="#" disabled>Dev-Blog</a></li>            
-                <li><a class="clear button" href="#" disabled>Contact</a></li>            
-            </ul>
+    <div data-sticky data-options="marginTop:0;" data-sticky-on="small">
+        <div class="title-bar sticky" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+            <div class="title-bar-title">Menu</div>
+        </div>
+
+        <div class="top-bar topbar-center-logo" id="responsive-menu" data-responsive-toggle="responsive-menu" data-hide-for="medium" style="width:100%;">
+            <div class="top-bar-left">
+                <ul class="menu vertical medium-horizontal">
+                    {#- LOGO #}              
+                    <li>
+                        <a class="clear button" href="{{url_for('main.index')}}"><img style="max-height: 35px;" src="{{url_for('static', filename='img/logo_156_35.png')}}" alt="Logo"></a>
+                    </li>
+                    <li><a class="clear button" href="{{url_for('main.index')}}">Search</a></li>
+                </ul>
+            </div>
+            {#<div id="navSearchBar" class="top-bar-center">
+                <form class="search-form" action="{{url_for('main.search')}}" method="post">
+                    <div class="grid-x">
+                        <div class="cell small-6">
+                            <input class="float-right" name="keyword" type="search" placeholder="Quick Search">
+                        </div>
+                        <div class="cell auto">
+                            <input type="submit" class="button" value="Go">
+                        </div>
+                    </div>
+                </form>
+            </div>#}
+            <div class="top-bar-right">
+                <ul class="menu" data-dropdown-menu>
+                    {# MENU ITEMS #}
+                    <li>
+                        <div id="navSearchBar" class="top-bar-center">
+                            <form class="search-form" action="{{url_for('main.search')}}" method="post">
+                                <div class="grid-x">
+                                    <div class="cell small-6">
+                                        <input name="keyword" type="search" placeholder="Quick Search">
+                                    </div>
+                                    <div class="cell auto">
+                                        <input type="submit" class="button" value="Go">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li><a class="clear button" href="{{url_for('main.about')}}">About</a></li>
+                    <li><a class="clear button" href="#" disabled>Dev-Blog</a></li>            
+                    <li><a class="clear button" href="#" disabled>Contact</a></li>            
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+
+{#
+<!-- mobile nav bar -->
+<div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
+    <div class="title-bar-left">
+      <div class="title-bar-title"><img src="https://placehold.it/100x39" alt="" /></div>
+    </div>
+    <div class="title-bar-right">
+      <button class="menu-icon" type="button" data-toggle="topbar-center-logo"></button>
+    </div>
+  </div>
+  <!-- /mobile nav bar -->
+  
+  <!-- medium and larger nav bar -->
+  <div class="top-bar topbar-center-logo" id="topbar-center-logo">
+    <div class="top-bar-left">
+      <ul class="menu vertical medium-horizontal">
+        <li><a href="#"><img src="{{url_for('static', filename='img/logo_156_35.png')}}" alt="" /></a></li>
+        <li><a href="#">One</a></li>
+        <li><a href="#">Two</a></li>
+        <li><a href="#">Three</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-center">
+      <a href="#"><img src="{{url_for('static', filename='img/logo_156_35.png')}}" alt="" /></a>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu vertical medium-horizontal">
+        <li><a href="#">Four</a></li>
+        <li><a href="#">Five</a></li>
+        <li><a href="#">Six</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /medium and larger nav bar -->
+  #}
+  
+  

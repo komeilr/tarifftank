@@ -3,12 +3,12 @@ from os.path import join
 from dotenv import load_dotenv
 
 
-
-BASEDIR = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(join(BASEDIR, '.env'))
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(join(basedir, '.env'))
 
 class Config:
-    global BASEDIR
+    
+    BASEDIR = basedir
     TESTING = False
     DEBUG = False
     DEBUG_TB_ENABLED = False
@@ -16,7 +16,7 @@ class Config:
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # SQLALCHEMY_POOL_SIZE = 20
+    
 
 
     RATELIMIT_DEFAULT = "1/second"
@@ -24,7 +24,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    DEBUG_TB_ENABLED = True
+    DEBUG_TB_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     DEBUG_TB_PROFILER_ENABLED = False
     SQLALCHEMY_ENGINE_OPTIONS = {

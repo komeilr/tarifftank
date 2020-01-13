@@ -146,13 +146,13 @@ class HeadingCA:
 
                 elif len(t.tariff) == 8:
                     duty_rate_8 = copy.deepcopy(t)
-                    print(duty_rate_8)
+                    #print(duty_rate_8)
                     d['tariff'] = ''
                 else:
                     d['tariff'] = t.tariff[:8]                
             
             if t.description:
-                print(t.description)
+                #print(t.description)
                 d['description'] = t.description
             
             if t.uom:

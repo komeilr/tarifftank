@@ -31,6 +31,13 @@
 
     <script src="{{url_for('static', filename='js/foundation.js')}}"></script>    
     <script src="{{url_for('static', filename='js/init.js')}}"></script>
+    <script>
+        if (window.location.href.length == 22) {
+            document.getElementById("navSearchBar").style.visibility = "hidden";
+        } else {
+            document.getElementById("navSearchBar").style.visibility = "visible";
+        };
+    </script>
     
 </body>
 </html>

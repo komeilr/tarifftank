@@ -36,10 +36,10 @@ def contact():
 @main_bp.route('/search', methods=['GET', 'POST']) # ----------SEARCH-------------
 def search():    
     if request.method == 'POST':
-        session['year'] = request.form.get('year')
-        session['region'] = request.form.get('region')
+        session['year'] = request.form.get('year') or session['year']
+        session['region'] = request.form.get('region') or session['region']
         keyword = request.form.get('keyword').replace('.', '')
-        print(len(keyword))
+        print(f"KEYWORD: {keyword}")
 
         # no input
         if not keyword:
