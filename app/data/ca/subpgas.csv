@@ -1,0 +1,55 @@
+NAME,PARENT
+All Programs CFIA,CFIA
+Nuclear Equipment,CNSC
+Nuclear Substances,CNSC
+Radiation Devices,CNSC
+Controlled Nuclear and Dual Use Substances,CNSC
+Waste Management & Reduction Division, ECCC
+Ozone-depleteing Substances and Halocarbon Alternatives,ECCC
+Wildlife Enforcement,ECCC
+Wildlife Enforcement - commodity may be regulated by ECCC,ECCC
+Vehicle and Engine Emissions Program,ECCC
+Aquatic Biotechnology Program,DFO
+Aquatic Invasive Species,DFO
+Trade Tracking,DFO
+Agriculture - Agriculture Products - High Tariff,GAC
+Agriculture - Agriculture Products - Low Tariff,GAC
+Agriculture - Barley - High Tariff,GAC
+Agriculture - Barley - Low Tariff,GAC
+Agriculture - Barley Products - High Tariff,GAC
+Agriculture - Barley Products - Low Tariff,GAC
+Agriculture - Beef and Veal - High Tariff,GAC
+Agriculture - Beef and Veal - Low Tariff,GAC
+Agriculture - Wheat - High Tariff,GAC
+Agriculture - Wheat - Low Tariff,GAC
+Agriculture - Wheat Products - High Tariff,GAC
+Agriculture - Wheat Products - Low Tariff,GAC
+Clothing and Textiles,GAC
+Steel - Carbon Steel,GAC
+Steel - Specialty Steel,GAC
+Active Pharmaceuticals Ingredients,HC
+Blood & Blood Components,HC
+"Cells, Tissues & Organs",HC
+Consumer Product Safety,HC
+Donor Semen,HC
+Human Drugs,HC
+Office of Controlled Substances,HC
+Medical Devices,HC
+Natural Health Products,HC
+Pesticieds (Pest Management Regulatory Agency),HC
+Radiation Emitting Devices,HC
+Veterinary Drugs,HC
+Explosives,NRCAN
+Office of Energy Efficiency,NRCAN
+Rough Diamonds,NRCAN
+Human and Terrestrial Animal Pathoens & Biological Toxins,PHAC
+Tires Program,TC
+Vehicles Program - CMVSS Appendix F,TC
+Vehicles Program - CMVSS Appendix G,TC
+Vehicles Program - CMVSS Appendix Case-by-Case,TC
+Vehicles Program - FMVSS Standard,TC
+VehicleS Program - GMVSS Case-by-Case,TC
+Vehicles Program - Age Exemption,TC
+Vehicles PRogram - CMVSS Returning Vehicles,TC
+Vehicles Program - Unregulated Vehicles,TC
+VEhicles Program - Vehicles for Parts,TC

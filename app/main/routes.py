@@ -47,7 +47,7 @@ def search():
 
         if len(keyword) == 2 and keyword.isdigit():
             page = 'chapter_lookup'
-        elif len(keyword) == 4 and keyword.isdigit():
+        elif len(keyword) in [4, 6] and keyword.isdigit():
             page = 'heading_lookup'
         elif len(keyword) == 10 and keyword.isdigit():
             page = 'tariff_lookup'

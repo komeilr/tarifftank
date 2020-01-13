@@ -1,0 +1,15 @@
+{
+    "CFIA":{
+        "description":"Canadian Food Inpsection Agency",
+        "subpga":"All Programs",
+        "subpga description":"All Programs"
+    },
+    "CNSC":"V",
+    "ECCC":"V",
+    "DFO":"V",
+    "GAC":"V",
+    "HC":"V",
+    "NRCAN":"V",
+    "PHAC":"V",
+    "TC":"V"
+}

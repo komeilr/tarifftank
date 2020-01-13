@@ -15,7 +15,7 @@ def heading_lookup(year, tariff):
     #TODO: add PGA stats
 
     # h object contains chapter and section notes
-    if len(tariff) == 4:
+    if len(tariff) in [4, 6]:
         try:
             if session['year']:
                 h = HeadingCA(tariff, session['year'])
@@ -23,8 +23,7 @@ def heading_lookup(year, tariff):
                 h = HeadingCA(tariff, year)
             #heading_dict = h.gen_tariff_dict()
             return render_template('ca/heading-lookup.html', title=f"Heading {tariff}", year=year, h=h)
-        except Exception as e:
-            
+        except Exception as e:            
             flash(f"Invalid heading {tariff}, {e}")
     else:
         flash(f"Invalid tariff {tariff}")

@@ -26,7 +26,7 @@ class HeadingCA:
 
         if not isinstance(_input, str):
             raise TypeError("input must be str")
-        elif len(_input) != 4:
+        elif len(_input) not in  [4, 6]:
             raise ValueError("input must be 4 digits")
         else:
             return _input
