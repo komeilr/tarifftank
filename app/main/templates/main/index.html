@@ -1,10 +1,6 @@
-
-
 {% extends "layout.html" %} 
 {% block main %}
-{% from "macros.html" import heading_accordion %}
-<main>
-    
+{% from "macros.html" import heading_accordion %}    
     <div class="grid-y grid-margin-y align-center" style="height:75vh; min-height: 300px;">
         <div class="cell small-1">
             <div class="grid-x grid-padding-x align-center">
@@ -55,7 +51,7 @@
                             <select name="region" id="region">
                                 {% for reg in ['ca', 'us', 'eu'] %}
                                     {% if session['region'] == reg %}
-                                    <option value="{{reg}}" selected>{{reg | upper}}</option>
+                                    <option value="{{reg}}" selected>{{reg | upper}}NADA</option>
                                     {% elif reg in ['us', 'eu'] %}
                                     <option value="{{reg}}" disabled>{{reg | upper}}</option> 
                                     {% else %}
@@ -71,8 +67,7 @@
                 </div>
             </form>
         </div>        
-    </div>
-    
-</main>
+    </div>    
+
 
 {% endblock %}

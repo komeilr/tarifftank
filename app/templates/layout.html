@@ -17,13 +17,15 @@
 </head>
 <body>
     {% from "macros.html" import navbar %}
+    <header>
     {{ navbar() }}    
+    </header>
     <main>
     {% block main %}{% endblock %}
     </main>
-
+    <footer class="footer">
     {% include "includes/_footer.html" ignore missing %}
-
+    </footer>
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
