@@ -6,7 +6,6 @@ from app.ca.models import CA2018, CA2019, Section, Chapter
 from converters import json_to_obj, json_to_str
 
 
-
 app = create_app()
 
 def execute(query, fetch='all'):
@@ -70,8 +69,3 @@ def create_pga_association(year):
     queryClass = vars(app.ca.models)[f"CA{year}"]
 
     tariffs = queryClass.query.filter(func.length(CA2019.tariff) == 10).all()
-
-
-
-if __name__=='__main__':
-    pass

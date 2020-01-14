@@ -25,9 +25,11 @@ def buildapp():
         os.system("flask db upgrade")
 
         print("populating tables")
-        from utils import pop_table
+        from utils import pop_table, populate_chapter_notes, populate_section_notes
         for t in [CA2018, CA2019, CA2020]:
             pop_table(t)
+        populate_section_notes()
+        populate_chapter_notes()
 
     except Exception as e:
         print(e)

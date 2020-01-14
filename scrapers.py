@@ -137,8 +137,3 @@ def data_to_json(data, json_filename):
         json.dump(out, json_file)
 
 
-if __name__=='__main__':
-    # for pga in pgapage:
-    #     data_to_csv(pga, 'logic')
-
-    data_to_json(sima_info(), 'sima_info')

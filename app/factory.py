@@ -8,8 +8,6 @@ from flask_limiter.util import get_remote_address
 from flask_debugtoolbar import DebugToolbarExtension
 import config
 
-from checkers import check_env_vars
-
 # instantiate db
 db = SQLAlchemy()
 migrate = Migrate()
@@ -18,10 +16,7 @@ debug_toolbar = DebugToolbarExtension()
 
 def create_app():
 
-    #check_env_vars(['DATABASE_URI', 'SECRET_KEY'])
-
-    app = Flask(__name__)
-    
+    app = Flask(__name__)    
 
     # Set app configuration
     # if not os.environ.get('FLASK_ENV'):
