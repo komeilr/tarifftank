@@ -25,7 +25,7 @@
         </div>    
 
         <div class="cell auto description">
-            {{"- " * tariff_obj.level + "-"}}
+            {{"- " * tariff_obj.dashes}} 
             {% if tariff_obj.is_heading %}
             <strong>{{tariff_obj.description}}</strong>
             {% else %}
@@ -123,7 +123,7 @@
             #}
             <td width=60>{{row.tariff | format_hs}}</td>
             <td width=50><a href="{{url_for('ca.tariff_lookup', year=session.year, tariff=row.tariff + row.ss)}}"><u>{{row.ss}}</u></a></td>
-            <td>{{row.description}}</td>
+            <td>{{"- " * row.dashes}}{{row.description}}</td>
             <td width=50>{{row.uom}}</td>
             <td width=100>{{row.mfn}}</td>
             <td width=200>

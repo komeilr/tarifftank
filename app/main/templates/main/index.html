@@ -5,8 +5,8 @@
 {% from "macros.html" import heading_accordion %}
 <main>
     
-    <div class="grid-y grid-margin-y align-center" style="height:300px;">
-        <div class="cell small-2">
+    <div class="grid-y grid-margin-y align-center" style="height:75vh; min-height: 300px;">
+        <div class="cell small-1">
             <div class="grid-x grid-padding-x align-center">
                 <div class="small-6 medium-4 large-3 cell">
                 {% with messages = get_flashed_messages() %}
@@ -35,7 +35,7 @@
         </div>
         <div class="cell small-1">
             <form class="search-form" action="{{url_for('main.search')}}" method="post">
-                <div class="grid-container fluid"></div>
+                <div class="grid-container fluid align-center"></div>
                     <div class="grid-x align-center">
                         <div class="small-10 medium-10 large-6 cell">
                             <input name="keyword" type="search" placeholder="Enter HS or Keyword">

@@ -75,8 +75,16 @@ class HeadingCA:
             'uom': tariffobj.uom,
             'level': level,
             'is_link':len(tariffobj.tariff) == 10,
-            'is_general_description':len(tariffobj.tariff) in [5, 7, 9]
+            'is_general_description':len(tariffobj.tariff) in [5, 7, 9],
+            'dashes':self._get_dashes(tariffobj.tariff)
         }
+
+    
+    def _get_dashes(self, tariff):
+        return len(tariff[4:]) - min(1, tariff[-2:].count('0'))
+
+
+
 
 
     def _key_chain(self, tariff):
@@ -134,7 +142,7 @@ class HeadingCA:
         out = []
         duty_rate_8 = None
         for t in self.tariffs:            
-            d = {'tariff':'', 'ss':'', 'description':'', 'uom':'', 'mfn':'', 'apt':{}}
+            d = {'tariff':'', 'ss':'', 'dashes':1, 'description':'', 'uom':'', 'mfn':'', 'apt':{}}
 
             if t.tariff:
                 if len(t.tariff) % 2 == 1:
@@ -149,7 +157,9 @@ class HeadingCA:
                     #print(duty_rate_8)
                     d['tariff'] = ''
                 else:
-                    d['tariff'] = t.tariff[:8]                
+                    d['tariff'] = t.tariff[:8]
+
+            d['dashes'] = self._get_dashes(t.tariff)             
             
             if t.description:
                 #print(t.description)
