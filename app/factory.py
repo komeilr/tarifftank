@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_limiter import Limiter
@@ -13,6 +14,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 limiter = Limiter(key_func=get_remote_address)
 debug_toolbar = DebugToolbarExtension()
+csrf = CSRFProtect()
 
 def create_app():
 
@@ -47,6 +49,8 @@ def create_app():
         limiter.init_app(app)
     if debug_toolbar:
         debug_toolbar.init_app(app)
+    if csrf:
+        csrf.init_app(app)
  
     with app.app_context():
         #TODO: create db/tables and populate if not exists
@@ -61,5 +65,8 @@ def create_app():
         # Canada
         from app.ca.routes import ca_bp
         app.register_blueprint(ca_bp)
+
+        from app.devblog.routes import devblog_bp
+        app.register_blueprint(devblog_bp)
 
     return app

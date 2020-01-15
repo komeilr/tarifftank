@@ -16,7 +16,8 @@ class Config:
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
+
+ 
 
 
     RATELIMIT_DEFAULT = "1/second"
@@ -27,12 +28,18 @@ class DevelopmentConfig(Config):
     DEBUG_TB_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     DEBUG_TB_PROFILER_ENABLED = False
+
+    #SQLALCHEMY_ECHO = True
     SQLALCHEMY_ENGINE_OPTIONS = {
     'pool_size':20,
     'pool_recycle':120,
     'pool_pre_ping':True
 }
-    #SQLALCHEMY_ECHO = True
+    
+    RECAPTCHA_USE_SSL = False
+    RECAPTCHA_PUBLIC_KEY = '6LfCns8UAAAAABaaZ9dvqNoG4G1fvWlsl_7q37Dn'
+    RECAPTCHA_PRIVATE_KEY = '6LfCns8UAAAAAGWtvxN4jnKH5lTopLj3BQA6ZGcz'
+    RECAPTCHA_OPTIONS = {'theme':'black'} 
 
 
 class ProductionConfig(Config):
@@ -44,7 +51,12 @@ class ProductionConfig(Config):
     'pool_size':20,
     'pool_recycle':120,
     'pool_pre_ping':True    
-}
+    }
+
+    RECAPTCHA_USE_SSL = True
+    RECAPTCHA_PUBLIC_KEY = '6LetnM8UAAAAANpxaVKmXhKmqt39CUglb0ZNgxpF'
+    RECAPTCHA_PRIVATE_KEY = '6LetnM8UAAAAAEPQXmhQIjCJwPxEnLkeTywHtvGE'
+    RECAPTCHA_OPTIONS = {'theme':'black'} 
     
 
 class TestingConfig(Config):

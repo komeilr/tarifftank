@@ -1,8 +1,13 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response, jsonify
-from helper_classes.heading import HeadingCA
-from helper_classes.tariffrate import TariffRateCA
 import json
 import string
+
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response, jsonify
+from .forms import ContactForm, SearchForm
+from .models import ContactMessage
+from app.factory import db
+from helper_classes.heading import HeadingCA
+from helper_classes.tariffrate import TariffRateCA
+
 
 
 main_bp = Blueprint('main', __name__, url_prefix='/', template_folder='templates', static_folder='static')
@@ -15,7 +20,10 @@ def robots():
 # ----------ROOT-------------
 @main_bp.route('/') 
 def index():
-    return render_template('main/index.html', title="TariffTank Search")
+    form = SearchForm()
+
+
+    return render_template('main/index.html', title="TariffTank Search", form=form)
 
 
 # ----------ABOUT-------------
@@ -24,21 +32,43 @@ def about():
     return render_template('main/about.html', title="About TariffTank(c)")
 
 
-# ----------DEV BLOG-------------
-@main_bp.route('/devblog') 
-def devblog():
-    return render_template('main/dev-blog.html', title="Dev Blog")
-
-
 # ----------CONTACT-------------
-@main_bp.route('/contact')
+@main_bp.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('main/contact.html', title='Contact')
+
+    form = ContactForm()
+
+    if form.validate_on_submit():
+        email = form.email.data
+        subject = form.subject.data
+        message = form.message.data
+
+        entry = ContactMessage(email=email, subject=subject, message=message, remote_address=request.remote_addr)
+        db.session.add(entry)
+        db.session.commit()
+
+
+        print(f"Email: {email}")
+        print(f"Subject: {subject}")
+        print(f"Message: {message}")
+        flash("The form has been submitted. Thank you!")
+        return redirect(url_for('main.index'))
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f"Error in the {getattr(form, field).label.text}'s field - {error}'")
+        
+
+
+    return render_template('main/contact.html', title='Contact', form=form)
 
 
 # ----------SEARCH-------------
 @main_bp.route('/search', methods=['GET', 'POST']) 
-def search():    
+def search():
+    form = SearchForm()
+
+    
     if request.method == 'POST':
         session['year'] = request.form.get('year') or session['year']
         session['region'] = request.form.get('region') or session['region']

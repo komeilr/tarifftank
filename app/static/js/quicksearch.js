@@ -23,7 +23,7 @@ parseURL = (url) => {
 }
 
 url = parseURL(window.location.href)
-quickSearchURLs = ['/about', '/', '/contact', '/devblog']
+quickSearchURLs = ['/about', '/', '/contact', '/devblog/']
 
 if (quickSearchURLs.includes(url.pathname)) {
     document.getElementById("navSearchBar").style.visibility = "hidden";

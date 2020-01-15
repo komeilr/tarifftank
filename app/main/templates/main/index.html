@@ -1,37 +1,45 @@
 {% extends "layout.html" %} 
 {% block main %}
 {% from "macros.html" import heading_accordion %}    
-    <div class="grid-y grid-margin-y align-center" style="height:75vh; min-height: 300px;">
+    <div class="grid-y grid-margin-y">
         <div class="cell small-1">
+            <br>
+            <h1 class="text-center">Welcome to TariffTank.com</h1>
+            <div class="grid-x grid-padding-x align-left">
+                <div class="cell small-10 small-offset-2 align-center">
+                    <br><br>
+                    <h5>Search Instructions</h5>
+                    <ul>                        
+                        <li>Enter even digit tariff code (ie. <strong>39</strong>, <strong>3926</strong>, <strong>392690</strong>)</li>
+                        <li>Enter Keyword (ie <strong>apple</strong>)</li>
+                    </ul>
+                </div>                
+            </div>            
+        </div>
+        <div class="cell small-1">            
             <div class="grid-x grid-padding-x align-center">
-                <div class="small-6 medium-4 large-3 cell">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message in messages %}
-                <div class="callout alert centered-text" data-closable>
-                    <!-- <h5>Error</h5> -->
-                    <i class="material-icons red">error_outline</i>
-                    <h5>&nbsp;{{message}}</h5>
-                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="small-2 medium-4 large-3 cell">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="callout alert centered-text" data-closable>
+                        <!-- <h5>Error</h5> -->
+                        
+                        <h5><i class="material-icons red">error_outline</i>&nbsp;{{message}}</h5>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                 </div>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
-                </div>
-            </div>
-        </div>
-        <div class="cell small-2">
-            <div class="grid-x align-center">
-                <div class="cell small-10 small-offset-2 medium-8 medium-offset-1 large-8 large-offset-3">
-                    <h3 class="subheader">Enter 2, 4, 6 or 10 digit tariff code or keyword</h3>
-                </div>
-            </div>
-        </div>
+            </div>            
+        </div>        
         <div class="cell small-1">
             <form class="search-form" action="{{url_for('main.search')}}" method="post">
-                <div class="grid-container fluid align-center"></div>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class="grid-container fluid align-center">
                     <div class="grid-x align-center">
                         <div class="small-10 medium-10 large-6 cell">
                             <input name="keyword" type="search" placeholder="Enter HS or Keyword">

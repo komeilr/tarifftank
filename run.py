@@ -4,6 +4,8 @@ import json
 
 from app.factory import create_app, db, limiter
 from app.ca.models import CA2018, CA2019, CA2020, Section, Chapter
+from app.main.models import ContactMessage
+from app.devblog.models import Blog
 import click
 
 
@@ -45,4 +47,6 @@ def drop_db():
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, CA2018=CA2018, CA2019=CA2019, CA2020=CA2020, Section=Section, Chapter=Chapter, limiter=limiter)
+    return dict(db=db, CA2018=CA2018, CA2019=CA2019, CA2020=CA2020, Section=Section, 
+                Chapter=Chapter, limiter=limiter, ContactMessage=ContactMessage,
+                Blog=Blog)

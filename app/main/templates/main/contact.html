@@ -5,9 +5,44 @@
     <div class="cell small-1"></div>
     <div class="cell small-1">
         <div class="grid-x grid-x-padding">
-            <div class="cell small-8 small-offset-2">
+            <div class="cell small-10 medium-8 large-4 small-offset-1 medium-offset-2 large-offset-4">
                 <h1>Contact</h1>
-                
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                <form action="{{url_for('main.contact')}}" method="post">
+                    {{ form.csrf_token }}
+                    {{ form.email.label }}
+                    {{ form.email }}
+                    <ul>
+                        {% for error in form.email.error %}
+                        <li class="red">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form.subject.label }}
+                    {{ form.subject }}
+                    <ul>
+                        {% for error in form.subject.error %}
+                        <li class="red">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form.message.label }}
+                    {{ form.message(rows=5) }}
+                    <ul>
+                        {% for error in form.message.error %}
+                        <li class="red">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form.recaptcha }}
+                    <br>
+                    {{ form.submit(class_="button") }}
+                </form>
                       
             </div>                 
         </div>
