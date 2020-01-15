@@ -40,9 +40,23 @@
     <div class="tabs-panel is-active" id="panel4">
         <h3>Book View {{h.heading | format_hs}}</h3>
         <div class="grid-x grid-padding-x">
+            {#<div class="cell medium-2">
+                <!-- <nav class="sticky-container" data-sticky-container>
+                    <div class="sticky" data-sticky data-anchor="tariffMenu" data-sticky-on="large"> -->
+                        <ul class="vertical menu" data-magellan>
+                            {% for row in h.book_view_web() %}
+                            {% if row.tariff %}
+                            <li><a class="button primary hollow small" href="#{{row.tariff}}{% if row.ss %}{{row.ss}}{% endif %}">{{row.tariff | format_hs}}{% if row.ss %}.{{row.ss}}{% endif %}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    <!-- </div>
+                </nav> -->
+            </div>#}
             <div class="cell small-12 medium-10 medium-offset-1">
                 {{bookview(h.book_view_web())}}     
             </div>
+            
         </div>     
     </div>
 </div>
