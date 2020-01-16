@@ -1,8 +1,8 @@
 
-body {
+/* body {
     position: relative;
     min-height: 100vh;
-}
+} */
 
 .top-bar, .top-bar ul {
     background-color: white;
@@ -71,17 +71,18 @@ input.button {
 }
 
 .footer {
-    /* min-height: 100px; */
+    min-height: 100px;
     background-color:darkslategray;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
-    padding: 1rem 3rem;
     color: white;
+    
+    /* height: 100px; */
 }
 
 main {
-    padding-bottom: 210px;
+    min-height: calc(100vh - 172px)    
 }
 
 div.callout.alert i {
@@ -106,6 +107,10 @@ div.centered-text {
 
 li a.red {
     color: red;
+}
+
+.orange {
+    color: orange
 }
 
 hr {

@@ -20,9 +20,11 @@
     <header>
     {{ navbar() }}    
     </header>
+
     <main>
     {% block main %}{% endblock %}
-    </main>
+    </main>        
+
     <footer class="footer">
     {% include "includes/_footer.html" ignore missing %}
     </footer>

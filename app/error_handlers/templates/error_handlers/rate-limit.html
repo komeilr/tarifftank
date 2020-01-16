@@ -1,0 +1,16 @@
+{% extends "layout.html" %} 
+{% block main %}
+  
+<div class="grid-y grid-margin-y align-center" style="height:300px;">
+    <div class="cell small-2"></div>
+    <div class="cell small-2">
+        <div class="grid-x align-center">
+            <div class="cell small-12 text-center">
+                <i class="material-icons red big">error_outline</i> 
+                <h1 class="subheader">Request Limit Exceeded (1 per second)</h1>
+            </div>
+        </div>
+    </div>               
+</div>   
+
+{% endblock %}

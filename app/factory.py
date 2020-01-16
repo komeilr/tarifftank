@@ -16,18 +16,20 @@ limiter = Limiter(key_func=get_remote_address)
 debug_toolbar = DebugToolbarExtension()
 csrf = CSRFProtect()
 
-def create_app():
+def create_app(cfg=None):
 
     app = Flask(__name__)    
 
     # Set app configuration
     # if not os.environ.get('FLASK_ENV'):
     #     raise ValueError("env variable doesn't exist")
-    if os.environ.get('FLASK_ENV') == 'production':
-        app.config.from_object(config.ProductionConfig)
+    if cfg == None:
+        if os.environ.get('FLASK_ENV') == 'production':
+            app.config.from_object(config.ProductionConfig)
+        else:
+            app.config.from_object(config.DevelopmentConfig)
     else:
-        app.config.from_object(config.DevelopmentConfig)
-
+        app.config.from_object(cfg)
     # Jinja template configs
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
@@ -38,6 +40,9 @@ def create_app():
     app.jinja_env.filters['embolden'] = embolden
     app.jinja_env.filters['format_hs'] = format_hs
     app.jinja_env.filters['format_hslist'] = format_hslist
+
+    # remove jinja cache limit
+    app.jinja_env.cache = {}
 
 
     # initialize extensions
@@ -66,7 +71,12 @@ def create_app():
         from app.ca.routes import ca_bp
         app.register_blueprint(ca_bp)
 
+        # DevBlog
         from app.devblog.routes import devblog_bp
         app.register_blueprint(devblog_bp)
+
+        # Error Handlers
+        from app.error_handlers.errorhandlers import error_bp
+        app.register_blueprint(error_bp)
 
     return app

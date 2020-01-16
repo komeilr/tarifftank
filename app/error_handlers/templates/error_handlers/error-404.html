@@ -1,18 +1,16 @@
 {% extends "layout.html" %} 
 {% block main %}
-
-<main>    
+  
     <div class="grid-y grid-margin-y align-center" style="height:300px;">
         <div class="cell small-2"></div>
         <div class="cell small-2">
             <div class="grid-x align-center">
                 <div class="cell small-12 text-center">
-                    <i class="material-icons red big">error_outline</i> 
-                    <h1 class="subheader">Request Limit Exceeded (1 per second)</h1>
+                    <span class="stat subheader">4</span><i class="material-icons orange big">error_outline</i><span class="stat subheader">4</span>
+                    <h1 class="subheader">Oops...that page doesn't exist...yet</h1>
                 </div>
             </div>
         </div>               
     </div>    
-</main>
 
 {% endblock %}

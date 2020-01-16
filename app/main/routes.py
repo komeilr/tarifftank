@@ -113,7 +113,9 @@ def search():
     return redirect(url_for('main.index'))
 
 
-@main_bp.errorhandler(429)
-def ratelimit_handler(e):
-    return render_template('main/rate-limit.html', title="RATE LIMIT EXCEEDED")
+# @main_bp.errorhandler(429)
+# def ratelimit_handler(e):
+#     return render_template('main/rate-limit.html', title="RATE LIMIT EXCEEDED")
+
+
     

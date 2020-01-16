@@ -50,3 +50,5 @@ def make_shell_context():
     return dict(db=db, CA2018=CA2018, CA2019=CA2019, CA2020=CA2020, Section=Section, 
                 Chapter=Chapter, limiter=limiter, ContactMessage=ContactMessage,
                 Blog=Blog)
+
+
