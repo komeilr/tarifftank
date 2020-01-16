@@ -16,20 +16,20 @@ limiter = Limiter(key_func=get_remote_address)
 debug_toolbar = DebugToolbarExtension()
 csrf = CSRFProtect()
 
-def create_app(cfg=None):
+def create_app(config_file=None):
 
     app = Flask(__name__)    
 
     # Set app configuration
     # if not os.environ.get('FLASK_ENV'):
     #     raise ValueError("env variable doesn't exist")
-    if cfg == None:
+    if config_file == None:
         if os.environ.get('FLASK_ENV') == 'production':
             app.config.from_object(config.ProductionConfig)
         else:
             app.config.from_object(config.DevelopmentConfig)
     else:
-        app.config.from_object(cfg)
+        app.config.from_object(config_file)
     # Jinja template configs
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
