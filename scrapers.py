@@ -31,7 +31,7 @@ def get_table_data(url):
     rows = table_head.find_all('tr')
     for row in rows:
         cols = row.find_all('th')
-        cols = [ele.text.strip() for ele in cols]
+        cols = [' '.join((ele.text.strip()).split()) for ele in cols]
         data.append([ele for ele in cols])
 
     # body
@@ -39,7 +39,8 @@ def get_table_data(url):
     rows = table_body.find_all('tr')
     for row in rows:
         cols = row.find_all('td')       
-        cols = [ele.text.strip() for ele in cols]       
+        # cols = [ele.text.strip() for ele in cols]
+        cols = [' '.join((ele.text.strip()).split()) for ele in cols]
         data.append([ele for ele in cols])
 
     return data

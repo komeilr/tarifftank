@@ -166,4 +166,14 @@ class PGA(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(5), unique=True)
     name = db.Column(db.String(255))
-    link = db.Column(db.String(255))
+    swilink = db.Column(db.String(255))
+    pgalink = db.Column(db.String(255))
+    subpgas = db.relationship('SubPGA', backref='pga', lazy=True)
+
+
+class SubPGA(db.Model):
+    __tablename__ = 'subpga'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    parentpga = db.Column(db.String(5), db.ForeignKey('pga.code'), nullable=False)

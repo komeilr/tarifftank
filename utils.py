@@ -2,7 +2,7 @@ import csv
 
 from sqlalchemy import func
 from app.factory import create_app, db
-from app.ca.models import CA2018, CA2019, Section, Chapter
+from app.ca.models import CA2018, CA2019, Section, Chapter, PGA, SubPGA
 from converters import json_to_obj, json_to_str
 
 
@@ -60,6 +60,36 @@ def populate_chapter_notes():
                 entry = Chapter(chapter=chapter, title=title, notes=notes, 
                                 subheading_notes=sub, supplementary_notes=sup,
                                 statistical_notes=stat, section_id=section)
+                db.session.add(entry)
+
+            db.session.commit()
+
+
+def populate_pga():
+    """Populates PGA table"""
+
+    with app.app_context():
+        with open(f'app/data/ca/pgas.csv', 'r') as f:
+            reader = csv.reader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+            for code, name, swilink, pgalink in reader:
+                # print(id, code, name, swilink, pgalink)
+                entry = PGA(code=code, name=name, swilink=swilink, pgalink=pgalink)
+                db.session.add(entry)
+            db.session.commit()
+
+def populate_subpga():
+    """Populates subpga table"""
+
+    with app.app_context():
+        res = db.session.execute('select count(*) from pga;')
+        if not res.fetchone()[0]:
+            return "Please populate pga table first"
+        
+        with open(f'app/data/ca/subpgas.csv', 'r') as f:
+            reader = csv.reader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for name, parent in reader:
+                entry = SubPGA(name=name, parentpga=parent)
                 db.session.add(entry)
 
             db.session.commit()
