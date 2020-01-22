@@ -1,7 +1,17 @@
 import json
 import string
 
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response, jsonify
+from flask import 
+    Blueprint, 
+    render_template, 
+    request, 
+    redirect, 
+    url_for, 
+    session, 
+    flash, 
+    make_response, 
+    jsonify
+    
 from .forms import ContactForm, SearchForm
 from .models import ContactMessage
 from app.factory import db

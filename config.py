@@ -19,6 +19,8 @@ class Config:
 
     RATELIMIT_DEFAULT = "1/second"
 
+    MAINTENANCE_MODE = False
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

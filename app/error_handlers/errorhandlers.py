@@ -15,3 +15,8 @@ def rate_limit(e):
 @error_bp.app_errorhandler(500)
 def server_error(e):
     return render_template('error_handlers/server-error.html', title="Server Error"), 500
+
+
+@error_bp.app_errorhandler(503)
+def server_error(e):
+    return render_template('error_handlers/maintenance.html', title="Maintenance"), 503

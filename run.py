@@ -2,6 +2,8 @@ import os
 import csv
 import json
 
+from flask import abort
+
 from app.factory import create_app, db, limiter
 from app.ca.models import CA2018, CA2019, CA2020, Section, Chapter, PGA, SubPGA
 from app.main.models import ContactMessage
@@ -10,6 +12,13 @@ import click
 
 
 app = create_app()
+
+@app.before_request
+def maintenance():
+    if app.config['MAINTENANCE_MODE']:
+        abort(503)
+
+
 
 @app.cli.command(name='buildapp')
 def buildapp():
