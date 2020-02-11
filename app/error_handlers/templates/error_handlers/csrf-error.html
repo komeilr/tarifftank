@@ -1,0 +1,16 @@
+{% extends "layout.html" %} 
+{% block main %}
+  
+    <div class="grid-y grid-margin-y align-center" style="height:300px;">
+        <div class="cell small-2"></div>
+        <div class="cell small-2">
+            <div class="grid-x align-center">
+                <div class="cell small-12 text-center">
+                    <span class="stat subheader">4</span><i class="material-icons orange big">error_outline</i><span class="stat subheader">4</span>
+                    <h1 class="subheader">{{reason}}</h1>
+                </div>
+            </div>
+        </div>               
+    </div>    
+
+{% endblock %}

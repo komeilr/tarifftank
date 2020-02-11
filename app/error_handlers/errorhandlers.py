@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from app.factory import csrf
+from flask_wtf.csrf import CSRFError
 
 error_bp = Blueprint('error_handlers', __name__, template_folder='templates')
 
@@ -22,6 +22,6 @@ def server_error(e):
 def server_error(e):
     return render_template('error_handlers/maintenance.html', title="Maintenance"), 503
 
-@csrf.error_handler
-def csrf_error(reason):
-    return render_template('csrf-error.html', reason=reason), 400
+@error_bp.app_errorhandler(CSRFError)
+def csrf_error(CSRFError):
+    return render_template('csrf-error.html', reason=CSRFError), 400
