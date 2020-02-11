@@ -20,6 +20,7 @@ class Config:
     RATELIMIT_DEFAULT = "1/second"
 
     MAINTENANCE_MODE = False
+    
 
 
 class DevelopmentConfig(Config):
@@ -58,6 +59,8 @@ class ProductionConfig(Config):
     RECAPTCHA_PUBLIC_KEY = '6LetnM8UAAAAANpxaVKmXhKmqt39CUglb0ZNgxpF'
     RECAPTCHA_PRIVATE_KEY = '6LetnM8UAAAAAEPQXmhQIjCJwPxEnLkeTywHtvGE'
     RECAPTCHA_OPTIONS = {'theme':'black'} 
+
+    WTF_CSRF_TIME_LIMIT = None
     
 
 class TestingConfig(Config):
