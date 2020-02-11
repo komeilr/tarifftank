@@ -15,27 +15,7 @@
                     </ul>
                 </div>                
             </div>            
-        </div>
-        <div class="cell small-1">            
-            <div class="grid-x grid-padding-x align-center">
-                <div class="small-10 medium-4 large-3 cell">
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div class="callout alert centered-text" data-closable>
-                        <!-- <h5>Error</h5> -->
-                        
-                        <h5><i class="material-icons red">error_outline</i>&nbsp;{{message}}</h5>
-                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                </div>
-            </div>            
-        </div>        
+        </div>       
         <div class="cell small-1">
             <form class="search-form" action="{{url_for('main.search')}}" method="post">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
@@ -74,7 +54,27 @@
                     </div>
                 </div>
             </form>
-        </div>        
+        </div>
+        <div class="cell small-1">            
+            <div class="grid-x grid-padding-x align-center">
+                <div class="small-10 medium-6 large-5 cell">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="callout alert centered-text" data-closable>
+                        <!-- <h5>Error</h5> -->
+                        
+                        <h5><i class="material-icons red">error_outline</i>&nbsp;{{message}}</h5>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </div>            
+        </div>         
     </div>    
 
 

@@ -1,7 +1,7 @@
 import json
 import string
 
-from flask import 
+from flask import (
     Blueprint, 
     render_template, 
     request, 
@@ -11,6 +11,7 @@ from flask import
     flash, 
     make_response, 
     jsonify
+)
     
 from .forms import ContactForm, SearchForm
 from .models import ContactMessage
@@ -96,12 +97,12 @@ def search():
         elif len(keyword) == 10 and keyword.isdigit():
             page = 'tariff_lookup'
         elif ''.join(keyword.split()).isalpha():
-            if len(keyword) < 4:
+            if len(keyword) < 3:
                 flash("keyword must be minimum 4 characters")
                 return redirect(url_for('main.index'))
             page = 'text_search'
         else:
-            flash("Invalid input")
+            flash(f"Invalid input '{keyword}'")
             return redirect(url_for('main.index'))
         
 

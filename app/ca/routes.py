@@ -2,13 +2,14 @@ import csv
 import json
 import os
 
-from flask import 
+from flask import (
     Blueprint, 
     render_template, 
     redirect, 
     url_for, 
     flash, 
     session
+)
 
 from helper_classes.heading import HeadingCA
 from helper_classes.tariffrate import TariffRateCA
@@ -16,6 +17,8 @@ import app.ca.models
 
 ca_bp = Blueprint('ca', __name__, url_prefix='/ca/', template_folder='templates')
 
+
+# ----------HEADING-------------
 @ca_bp.route('/<year>/heading/<tariff>')
 def heading_lookup(year, tariff):
 
@@ -33,7 +36,7 @@ def heading_lookup(year, tariff):
         flash(f"Invalid tariff {tariff}")
     return redirect(url_for('main.index'))
 
-
+# ----------10 DIGIT HS-------------
 @ca_bp.route('/<year>/tariff/<tariff>')
 def tariff_lookup(year, tariff):
 
@@ -68,6 +71,7 @@ def tariff_lookup(year, tariff):
     return redirect(url_for('main.index'))
 
 
+# ----------CHAPTER-------------
 @ca_bp.route('/<year>/chapter/<tariff>')
 def chapter_lookup(year, tariff):
     chapter = tariff
@@ -77,7 +81,7 @@ def chapter_lookup(year, tariff):
 
     return render_template('ca/chapter-lookup.html', headings=headings, chapter=chapter, title=f"Chapter - {chapter}")    
 
-
+# ----------TEXT SEARCH-------------
 @ca_bp.route('/<year>/text-search/<tariff>')
 def text_search(year, tariff):
     keyword = tariff
